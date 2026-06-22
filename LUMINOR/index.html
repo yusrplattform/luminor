@@ -1,0 +1,856 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="منتجات LUMINOR للعناية، اختيار المنتجات وطلبها مباشرة عبر الواتساب.">
+  <title>منتجات LUMINOR للعناية</title>
+  <style>
+    :root {
+      --sage: #B7C6A3;
+      --off-white: #F7F6F1;
+      --white: #FFFFFF;
+      --text: #6F756A;
+      --button: #8FA077;
+      --dark: #4E5846;
+      --line: #DEE5D6;
+      --shadow: 0 14px 34px rgba(111, 117, 106, .13);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Tahoma, Arial, sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .page {
+      width: min(1120px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 110px;
+    }
+
+    .header {
+      text-align: center;
+      padding: 18px 0 24px;
+    }
+
+    .logo {
+      width: min(190px, 58vw);
+      height: auto;
+      margin: 0 auto 18px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--dark);
+      font-size: clamp(1.55rem, 5vw, 2.35rem);
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      max-width: 620px;
+      margin: 10px auto 0;
+      font-size: 1rem;
+    }
+
+    .shipping-note {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      margin-top: 12px;
+      padding: 5px 12px;
+      color: var(--white);
+      background: var(--button);
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(143, 160, 119, .18);
+    }
+
+    .instagram-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      margin-top: 12px;
+      padding: 5px 12px;
+      color: var(--dark);
+      background: var(--white);
+      border: 1px solid rgba(183, 198, 163, .7);
+      border-radius: 8px;
+      font-size: .95rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 8px 20px rgba(111, 117, 106, .07);
+    }
+
+    .instagram-link:hover {
+      color: var(--white);
+      background: var(--button);
+      border-color: var(--button);
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 auto 22px;
+      max-width: 720px;
+    }
+
+    .category-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 8px 6px;
+      color: var(--dark);
+      background: var(--white);
+      border: 1px solid rgba(183, 198, 163, .7);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: clamp(.68rem, 2.35vw, .92rem);
+      font-weight: 700;
+      line-height: 1.35;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(111, 117, 106, .07);
+      transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, color .2s ease, transform .2s ease;
+    }
+
+    .category-button:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .category-button.is-active {
+      color: var(--white);
+      background: var(--button);
+      border-color: var(--button);
+      box-shadow: 0 12px 24px rgba(143, 160, 119, .24);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .product-card {
+      position: relative;
+      display: grid;
+      gap: 12px;
+      min-height: 100%;
+      padding: 10px;
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid rgba(183, 198, 163, .55);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(111, 117, 106, .08);
+      cursor: pointer;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background .2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-card.is-selected {
+      background: #FBFCF8;
+      border-color: var(--button);
+      box-shadow: 0 14px 34px rgba(143, 160, 119, .25);
+    }
+
+    .product-card.is-hidden {
+      display: none;
+    }
+
+    .comments {
+      margin-top: 34px;
+      padding-bottom: 18px;
+      overflow: visible;
+    }
+
+    .comments-title {
+      margin: 0 0 14px;
+      color: var(--dark);
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .comments-marquee {
+      overflow: hidden;
+      direction: ltr;
+      min-height: 132px;
+      padding: 4px 0 10px;
+    }
+
+    .comments-track {
+      display: flex;
+      width: max-content;
+      gap: 12px;
+      animation: commentsMoveRight 52s linear infinite;
+      direction: ltr;
+      will-change: transform;
+    }
+
+    .comments-track:hover {
+      animation-play-state: paused;
+    }
+
+    .comment-card {
+      width: min(280px, 76vw);
+      min-height: 116px;
+      padding: 14px;
+      background: var(--white);
+      border: 1px solid rgba(183, 198, 163, .58);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(111, 117, 106, .08);
+      flex: 0 0 auto;
+      direction: rtl;
+      text-align: right;
+    }
+
+    .comment-name {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--dark);
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .comment-text {
+      margin: 0;
+      font-size: .9rem;
+    }
+
+    @keyframes commentsMoveRight {
+      from {
+        transform: translateX(-50%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .product-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: var(--off-white);
+      border-radius: 7px;
+    }
+
+    .product-body {
+      display: grid;
+      gap: 7px;
+      padding: 0 2px 4px;
+    }
+
+    .product-name {
+      margin: 0;
+      color: var(--dark);
+      font-size: 1.02rem;
+      font-weight: 700;
+    }
+
+    .product-desc {
+      margin: 0;
+      min-height: 54px;
+      font-size: .88rem;
+    }
+
+    .price-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    .price-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 4px 9px;
+      color: var(--dark);
+      background: var(--off-white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .select-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 2px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--dark);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .select-row input {
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      accent-color: var(--button);
+      cursor: pointer;
+    }
+
+    .selected-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      color: var(--white);
+      background: var(--button);
+      border-radius: 50%;
+      font-size: 1rem;
+      box-shadow: 0 8px 18px rgba(78, 88, 70, .2);
+    }
+
+    .product-card.is-selected .selected-badge {
+      display: flex;
+    }
+
+    .order-bar {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+      padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(247, 246, 241, .92);
+      border-top: 1px solid rgba(183, 198, 163, .7);
+      backdrop-filter: blur(14px);
+    }
+
+    .order-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .order-button {
+      width: min(440px, 100%);
+      min-height: 54px;
+      padding: 12px 22px;
+      color: var(--white);
+      background: var(--button);
+      border: 0;
+      border-radius: 8px;
+      box-shadow: 0 12px 24px rgba(143, 160, 119, .3);
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .order-button:hover {
+      background: var(--dark);
+      transform: translateY(-1px);
+    }
+
+    .order-button:active {
+      transform: translateY(0);
+    }
+
+    @media (min-width: 720px) {
+      .page {
+        padding-top: 34px;
+      }
+
+      .products {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .product-card {
+        padding: 12px;
+      }
+
+      .product-desc {
+        min-height: 48px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .comments-track {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <img class="logo" src="logo.png" alt="LUMINOR">
+      <h1>منتجات LUMINOR للعناية</h1>
+      <p class="intro">اختاري المنتجات التي ترغبين بطلبها، ثم اضغطي اطلب الآن لإرسال الطلب عبر الواتساب.</p>
+      <div class="shipping-note">يوجد شحن لكافة دول الخليج</div>
+      <br>
+      <a class="instagram-link" href="https://www.instagram.com/luminor_care" target="_blank" rel="noopener">@luminor_care</a>
+    </header>
+
+    <nav class="categories" aria-label="تصنيفات المنتجات">
+      <button class="category-button is-active" type="button" data-category="all">كل المنتجات</button>
+      <button class="category-button" type="button" data-category="body">منتجات العناية بالجسم</button>
+      <button class="category-button" type="button" data-category="hair">منتجات العناية بالشعر</button>
+      <button class="category-button" type="button" data-category="frankincense">اللبان</button>
+    </nav>
+
+    <section class="products" aria-label="منتجات LUMINOR">
+      <!-- لتغيير صور المنتجات: ضعي الصور الجديدة داخل مجلد images ثم عدلي قيمة src لكل منتج. -->
+      <label class="product-card is-hidden" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/sidr.png" alt="سدر LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">سدر LUMINOR</h2>
+          <p class="product-desc">عناية طبيعية تمنح الشعر إحساساً بالانتعاش والخفة.</p>
+          <!-- لتغيير السعر: عدلي القيمتين هنا وفي value داخل Checkbox لنفس المنتج. -->
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">4.500 ر.ع</span>
+            <span class="price-pill">44 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="سدر LUMINOR - 4.500 ر.ع / 44 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/mishat.png" alt="مشاط LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">مشاط LUMINOR</h2>
+          <p class="product-desc">خلطة عناية تقليدية للشعر بلمسة ناعمة وفاخرة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">5.000 ر.ع</span>
+            <span class="price-pill">49 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="مشاط LUMINOR - 5.000 ر.ع / 49 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/luminor_henna_mashat_style.png" alt="الحنا العماني LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">الحنا العماني LUMINOR</h2>
+          <p class="product-desc">حنا عماني طبيعي للعناية بالشعر ومنحه لوناً ولمسة تقليدية ناعمة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">3.000 ر.ع</span>
+            <span class="price-pill">29 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="الحنا العماني LUMINOR - 3.000 ر.ع / 29 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/luminor_herbal_henna_mix.png" alt="الحنا بالأعشاب LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">الحنا بالأعشاب LUMINOR</h2>
+          <p class="product-desc">خلطة حنا بالأعشاب للعناية بالشعر ومنحه مظهراً صحياً وطبيعياً.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">8.000 ر.ع</span>
+            <span class="price-pill">78 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع / 78 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/hair-oil.png" alt="زيت الشعر LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">زيت الشعر LUMINOR</h2>
+          <p class="product-desc">زيت غني يساعد على ترطيب الشعر ومنحه لمعاناً صحياً.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">5.000 ر.ع</span>
+            <span class="price-pill">49 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="زيت الشعر LUMINOR - 5.000 ر.ع / 49 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/hair-mask.png" alt="ماسك الشعر LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">ماسك الشعر LUMINOR</h2>
+          <p class="product-desc">ماسك يمنح الشعر عناية عميقة ونعومة ملحوظة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">7.000 ر.ع</span>
+            <span class="price-pill">68 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="ماسك الشعر LUMINOR - 7.000 ر.ع / 68 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="body">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/luminor_yemeni_wars_soap.png" alt="الورس اليمني LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">الورس اليمني LUMINOR</h2>
+          <p class="product-desc">ورس يمني للعناية بالبشرة ومنحها إحساساً بالنظافة والنعومة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">7.000 ر.ع</span>
+            <span class="price-pill">68 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع / 68 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="body">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/body-scrub.png" alt="سنفرة الجسم LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">سنفرة الجسم LUMINOR</h2>
+          <p class="product-desc">سنفرة ناعمة تمنح الجسم ملمساً حريرياً ومنتعشاً.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">8.500 ر.ع</span>
+            <span class="price-pill">83 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="سنفرة الجسم LUMINOR - 8.500 ر.ع / 83 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="body">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/body-soap.png" alt="صابونية الجسم LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">صابونية الجسم LUMINOR</h2>
+          <p class="product-desc">صابونية عناية يومية تنظف البشرة بلطف وتتركها ناعمة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">8.000 ر.ع</span>
+            <span class="price-pill">78 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="صابونية الجسم LUMINOR - 8.000 ر.ع / 78 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="body">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/brightening-cream.png" alt="كريم التفتيح LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">كريم التفتيح LUMINOR</h2>
+          <p class="product-desc">كريم عناية يساعد على منح البشرة مظهراً أكثر إشراقاً ونعومة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">10.000 ر.ع</span>
+            <span class="price-pill">98 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="كريم التفتيح LUMINOR - 10.000 ر.ع / 98 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="frankincense">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 100 جرام">
+        <span class="product-body">
+          <h2 class="product-name">لبان LUMINOR 100 جرام</h2>
+          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">2.400 ر.ع</span>
+            <span class="price-pill">23 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="لبان LUMINOR 100 جرام - 2.400 ر.ع / 23 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="frankincense">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 250 جرام">
+        <span class="product-body">
+          <h2 class="product-name">لبان LUMINOR 250 جرام</h2>
+          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">6.000 ر.ع</span>
+            <span class="price-pill">59 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="لبان LUMINOR 250 جرام - 6.000 ر.ع / 59 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="frankincense">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 500 جرام">
+        <span class="product-body">
+          <h2 class="product-name">لبان LUMINOR 500 جرام</h2>
+          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">12.000 ر.ع</span>
+            <span class="price-pill">117 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="لبان LUMINOR 500 جرام - 12.000 ر.ع / 117 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card is-hidden" data-category="frankincense">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 1 كيلو">
+        <span class="product-body">
+          <h2 class="product-name">لبان LUMINOR 1 كيلو</h2>
+          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">24.000 ر.ع</span>
+            <span class="price-pill">234 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="لبان LUMINOR 1 كيلو - 24.000 ر.ع / 234 ر.س">
+          </span>
+        </span>
+      </label>
+    </section>
+
+    <section class="comments" aria-label="تعليقات العميلات">
+      <h2 class="comments-title">تعليقات العميلات</h2>
+      <div class="comments-marquee">
+        <div class="comments-track">
+          <article class="comment-card">
+            <strong class="comment-name">مها</strong>
+            <p class="comment-text">بصراحة المنتجات وايد حلوة، حسيت بشعري أنعم من أول استخدام.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">نورة</strong>
+            <p class="comment-text">طلبت السنفرة والصابونية، ريحتها تفتح النفس والملمس يجنن.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">ريم</strong>
+            <p class="comment-text">اللبان نظيف ومرتب، أنقعه وأشربه ومرتاحه عليه وايد.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">شهد</strong>
+            <p class="comment-text">زيت الشعر عجبني مره، خفف الجفاف وخلى شعري يلمع.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">أمل</strong>
+            <p class="comment-text">ماسك الشعر رهيب، الشعر صار أطرى وأسهل في التمشيط.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">الجوهرة</strong>
+            <p class="comment-text">كريم التفتيح ناسب بشرتي، يعطي ترطيب ونعومة حلوة.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">خلود</strong>
+            <p class="comment-text">السدر وايد عجبني، نظف الشعر بدون ما ينشفه. حبيته من قلب.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">غلا</strong>
+            <p class="comment-text">التغليف مرتب والطلب وصلني بسرعة، والريحة مرة فخمة.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">ليان</strong>
+            <p class="comment-text">الصابونية خلت بشرتي ناعمة، وحتى أختي سألتني عنها.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">سارة</strong>
+            <p class="comment-text">المشاط ممتاز، حسيت شعري صار مرتب وأقل هيشان من قبل.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">دانة</strong>
+            <p class="comment-text">اللبان واضح إنه أصلي، أستخدمه للشرب والنقع بشكل يومي.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">رنا</strong>
+            <p class="comment-text">سنفرة الجسم خفيفة وحلوة، بعدها الجلد يصير ناعم بشكل واضح.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">مها</strong>
+            <p class="comment-text">بصراحة المنتجات وايد حلوة، حسيت بشعري أنعم من أول استخدام.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">نورة</strong>
+            <p class="comment-text">طلبت السنفرة والصابونية، ريحتها تفتح النفس والملمس يجنن.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">ريم</strong>
+            <p class="comment-text">اللبان نظيف ومرتب، أنقعه وأشربه ومرتاحه عليه وايد.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">شهد</strong>
+            <p class="comment-text">زيت الشعر عجبني مره، خفف الجفاف وخلى شعري يلمع.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">أمل</strong>
+            <p class="comment-text">ماسك الشعر رهيب، الشعر صار أطرى وأسهل في التمشيط.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">الجوهرة</strong>
+            <p class="comment-text">كريم التفتيح ناسب بشرتي، يعطي ترطيب ونعومة حلوة.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">خلود</strong>
+            <p class="comment-text">السدر وايد عجبني، نظف الشعر بدون ما ينشفه. حبيته من قلب.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">غلا</strong>
+            <p class="comment-text">التغليف مرتب والطلب وصلني بسرعة، والريحة مرة فخمة.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">ليان</strong>
+            <p class="comment-text">الصابونية خلت بشرتي ناعمة، وحتى أختي سألتني عنها.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">سارة</strong>
+            <p class="comment-text">المشاط ممتاز، حسيت شعري صار مرتب وأقل هيشان من قبل.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">دانة</strong>
+            <p class="comment-text">اللبان واضح إنه أصلي، أستخدمه للشرب والنقع بشكل يومي.</p>
+          </article>
+          <article class="comment-card">
+            <strong class="comment-name">رنا</strong>
+            <p class="comment-text">سنفرة الجسم خفيفة وحلوة، بعدها الجلد يصير ناعم بشكل واضح.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="order-bar">
+    <div class="order-inner">
+      <button class="order-button" type="button" id="orderButton">اطلب الآن عبر الواتساب</button>
+    </div>
+  </div>
+
+  <script>
+    // لتغيير رقم الواتساب: عدلي الرقم هنا بصيغة دولية بدون علامة + أو مسافات.
+    const whatsappNumber = "96898939222";
+
+    const cards = document.querySelectorAll(".product-card");
+    const categoryButtons = document.querySelectorAll(".category-button");
+    const checkboxes = document.querySelectorAll('input[name="product"]');
+    const orderButton = document.getElementById("orderButton");
+
+    function showCategory(category) {
+      categoryButtons.forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.category === category);
+      });
+
+      cards.forEach((card) => {
+        card.classList.toggle("is-hidden", category !== "all" && card.dataset.category !== category);
+      });
+    }
+
+    function updateCardState(checkbox) {
+      checkbox.closest(".product-card").classList.toggle("is-selected", checkbox.checked);
+    }
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener("click", () => showCategory(button.dataset.category));
+    });
+
+    showCategory("all");
+
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => updateCardState(checkbox));
+    });
+
+    cards.forEach((card) => {
+      card.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          const checkbox = card.querySelector('input[name="product"]');
+          checkbox.checked = !checkbox.checked;
+          updateCardState(checkbox);
+        }
+      });
+    });
+
+    orderButton.addEventListener("click", () => {
+      const selectedProducts = Array.from(checkboxes)
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.value);
+
+      if (!selectedProducts.length) {
+        alert("يرجى اختيار منتج واحد على الأقل");
+        return;
+      }
+
+      const message = [
+        "طلب جديد من LUMINOR",
+        "المنتجات المختارة:",
+        ...selectedProducts.map((product) => `- ${product}`),
+        "",
+        "أرغب بتأكيد الطلب والتوصيل."
+      ].join("\n");
+
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>
+
+
