@@ -798,6 +798,34 @@
     const checkboxes = document.querySelectorAll('input[name="product"]');
     const orderButton = document.getElementById("orderButton");
 
+    function getSelectedProducts() {
+      return Array.from(checkboxes)
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.value);
+    }
+
+    function buildOrderMessage(selectedProducts) {
+      return [
+        "طلب جديد من LUMINOR",
+        "المنتجات المختارة:",
+        ...selectedProducts.map((product) => `- ${product}`),
+        "",
+        "أرغب بتأكيد الطلب والتوصيل."
+      ].join("\n");
+    }
+
+    function buildWhatsappUrl(message = "") {
+      const text = message ? `&text=${encodeURIComponent(message)}` : "";
+      return `https://api.whatsapp.com/send?phone=${whatsappNumber}${text}`;
+    }
+
+    function updateOrderLink() {
+      const selectedProducts = getSelectedProducts();
+      orderButton.href = selectedProducts.length
+        ? buildWhatsappUrl(buildOrderMessage(selectedProducts))
+        : buildWhatsappUrl();
+    }
+
     function showCategory(category) {
       categoryButtons.forEach((button) => {
         button.classList.toggle("is-active", button.dataset.category === category);
@@ -819,7 +847,10 @@
     showCategory("all");
 
     checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener("change", () => updateCardState(checkbox));
+      checkbox.addEventListener("change", () => {
+        updateCardState(checkbox);
+        updateOrderLink();
+      });
     });
 
     cards.forEach((card) => {
@@ -828,14 +859,13 @@
           const checkbox = card.querySelector('input[name="product"]');
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
+          updateOrderLink();
         }
       });
     });
 
     orderButton.addEventListener("click", (event) => {
-      const selectedProducts = Array.from(checkboxes)
-        .filter((checkbox) => checkbox.checked)
-        .map((checkbox) => checkbox.value);
+      const selectedProducts = getSelectedProducts();
 
       if (!selectedProducts.length) {
         event.preventDefault();
@@ -843,17 +873,10 @@
         return;
       }
 
-      const message = [
-        "طلب جديد من LUMINOR",
-        "المنتجات المختارة:",
-        ...selectedProducts.map((product) => `- ${product}`),
-        "",
-        "أرغب بتأكيد الطلب والتوصيل."
-      ].join("\n");
-
-      const url = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
-      orderButton.href = url;
+      updateOrderLink();
     });
+
+    updateOrderLink();
   </script>
 </body>
 </html>
