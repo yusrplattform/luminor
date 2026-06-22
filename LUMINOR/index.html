@@ -364,7 +364,7 @@
       margin: 0 auto;
     }
 
-    .order-button {
+    .order-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -383,12 +383,12 @@
       transition: background .2s ease, transform .2s ease;
     }
 
-    .order-button:hover {
+    .order-btn:hover {
       background: var(--dark);
       transform: translateY(-1px);
     }
 
-    .order-button:active {
+    .order-btn:active {
       transform: translateY(0);
     }
 
@@ -785,7 +785,7 @@
 
   <div class="order-bar">
     <div class="order-inner">
-      <a class="order-button" id="orderButton" href="https://api.whatsapp.com/send?phone=96898939222" target="_blank" rel="noopener">اطلب الآن عبر الواتساب</a>
+      <a id="whatsappBtn" href="#" class="order-btn">اطلب الآن عبر الواتساب</a>
     </div>
   </div>
 
@@ -796,7 +796,7 @@
     const cards = document.querySelectorAll(".product-card");
     const categoryButtons = document.querySelectorAll(".category-button");
     const checkboxes = document.querySelectorAll('input[name="product"]');
-    const orderButton = document.getElementById("orderButton");
+    const whatsappBtn = document.getElementById("whatsappBtn");
 
     function getSelectedProducts() {
       return Array.from(checkboxes)
@@ -812,18 +812,6 @@
         "",
         "أرغب بتأكيد الطلب والتوصيل."
       ].join("\n");
-    }
-
-    function buildWhatsappUrl(message = "") {
-      const text = message ? `&text=${encodeURIComponent(message)}` : "";
-      return `https://api.whatsapp.com/send?phone=${whatsappNumber}${text}`;
-    }
-
-    function updateOrderLink() {
-      const selectedProducts = getSelectedProducts();
-      orderButton.href = selectedProducts.length
-        ? buildWhatsappUrl(buildOrderMessage(selectedProducts))
-        : buildWhatsappUrl();
     }
 
     function showCategory(category) {
@@ -849,7 +837,6 @@
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         updateCardState(checkbox);
-        updateOrderLink();
       });
     });
 
@@ -859,12 +846,11 @@
           const checkbox = card.querySelector('input[name="product"]');
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
-          updateOrderLink();
         }
       });
     });
 
-    orderButton.addEventListener("click", (event) => {
+    whatsappBtn.addEventListener("click", function (event) {
       const selectedProducts = getSelectedProducts();
 
       if (!selectedProducts.length) {
@@ -873,10 +859,9 @@
         return;
       }
 
-      updateOrderLink();
+      const message = buildOrderMessage(selectedProducts);
+      whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     });
-
-    updateOrderLink();
   </script>
 </body>
 </html>
