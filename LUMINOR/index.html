@@ -365,6 +365,9 @@
     }
 
     .order-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: min(440px, 100%);
       min-height: 54px;
       padding: 12px 22px;
@@ -376,6 +379,7 @@
       cursor: pointer;
       font-size: 1rem;
       font-weight: 700;
+      text-decoration: none;
       transition: background .2s ease, transform .2s ease;
     }
 
@@ -433,10 +437,10 @@
     </nav>
 
     <section class="products" aria-label="منتجات LUMINOR">
-      <!-- لتغيير صور المنتجات: ضعي الصور الجديدة داخل مجلد images ثم عدلي قيمة src لكل منتج. -->
+      <!-- لتغيير صور المنتجات: ضعي الصور الجديدة داخل مجلد images/optimized ثم عدلي قيمة src لكل منتج. -->
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/sidr.png" alt="سدر LUMINOR">
+        <img class="product-image" src="images/optimized/sidr.webp" alt="سدر LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">سدر LUMINOR</h2>
           <p class="product-desc">عناية طبيعية تمنح الشعر إحساساً بالانتعاش والخفة.</p>
@@ -454,7 +458,7 @@
 
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/mishat.png" alt="مشاط LUMINOR">
+        <img class="product-image" src="images/optimized/mishat.webp" alt="مشاط LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">مشاط LUMINOR</h2>
           <p class="product-desc">خلطة عناية تقليدية للشعر بلمسة ناعمة وفاخرة.</p>
@@ -471,7 +475,7 @@
 
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/luminor_henna_mashat_style.png" alt="الحنا العماني LUMINOR">
+        <img class="product-image" src="images/optimized/luminor_henna_mashat_style.webp" alt="الحنا العماني LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">الحنا العماني LUMINOR</h2>
           <p class="product-desc">حنا عماني طبيعي للعناية بالشعر ومنحه لوناً ولمسة تقليدية ناعمة.</p>
@@ -488,7 +492,7 @@
 
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/luminor_herbal_henna_mix.png" alt="الحنا بالأعشاب LUMINOR">
+        <img class="product-image" src="images/optimized/luminor_herbal_henna_mix.webp" alt="الحنا بالأعشاب LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">الحنا بالأعشاب LUMINOR</h2>
           <p class="product-desc">خلطة حنا بالأعشاب للعناية بالشعر ومنحه مظهراً صحياً وطبيعياً.</p>
@@ -505,7 +509,7 @@
 
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/hair-oil.png" alt="زيت الشعر LUMINOR">
+        <img class="product-image" src="images/optimized/hair-oil.webp" alt="زيت الشعر LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">زيت الشعر LUMINOR</h2>
           <p class="product-desc">زيت غني يساعد على ترطيب الشعر ومنحه لمعاناً صحياً.</p>
@@ -522,7 +526,7 @@
 
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/hair-mask.png" alt="ماسك الشعر LUMINOR">
+        <img class="product-image" src="images/optimized/hair-mask.webp" alt="ماسك الشعر LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">ماسك الشعر LUMINOR</h2>
           <p class="product-desc">ماسك يمنح الشعر عناية عميقة ونعومة ملحوظة.</p>
@@ -539,7 +543,7 @@
 
       <label class="product-card" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/luminor_yemeni_wars_soap.png" alt="الورس اليمني LUMINOR">
+        <img class="product-image" src="images/optimized/luminor_yemeni_wars_soap.webp" alt="الورس اليمني LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">الورس اليمني LUMINOR</h2>
           <p class="product-desc">ورس يمني للعناية بالبشرة ومنحها إحساساً بالنظافة والنعومة.</p>
@@ -556,7 +560,7 @@
 
       <label class="product-card" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/body-scrub.png" alt="سنفرة الجسم LUMINOR">
+        <img class="product-image" src="images/optimized/body-scrub.webp" alt="سنفرة الجسم LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">سنفرة الجسم LUMINOR</h2>
           <p class="product-desc">سنفرة ناعمة تمنح الجسم ملمساً حريرياً ومنتعشاً.</p>
@@ -573,7 +577,7 @@
 
       <label class="product-card" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/body-soap.png" alt="صابونية الجسم LUMINOR">
+        <img class="product-image" src="images/optimized/body-soap.webp" alt="صابونية الجسم LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">صابونية الجسم LUMINOR</h2>
           <p class="product-desc">صابونية عناية يومية تنظف البشرة بلطف وتتركها ناعمة.</p>
@@ -590,7 +594,7 @@
 
       <label class="product-card" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/brightening-cream.png" alt="كريم التفتيح LUMINOR">
+        <img class="product-image" src="images/optimized/brightening-cream.webp" alt="كريم التفتيح LUMINOR" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">كريم التفتيح LUMINOR</h2>
           <p class="product-desc">كريم عناية يساعد على منح البشرة مظهراً أكثر إشراقاً ونعومة.</p>
@@ -607,7 +611,7 @@
 
       <label class="product-card is-hidden" data-category="frankincense">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 100 جرام">
+        <img class="product-image" src="images/optimized/frankincense.webp" alt="لبان LUMINOR 100 جرام" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 100 جرام</h2>
           <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
@@ -624,7 +628,7 @@
 
       <label class="product-card is-hidden" data-category="frankincense">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 250 جرام">
+        <img class="product-image" src="images/optimized/frankincense.webp" alt="لبان LUMINOR 250 جرام" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 250 جرام</h2>
           <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
@@ -641,7 +645,7 @@
 
       <label class="product-card is-hidden" data-category="frankincense">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 500 جرام">
+        <img class="product-image" src="images/optimized/frankincense.webp" alt="لبان LUMINOR 500 جرام" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 500 جرام</h2>
           <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
@@ -658,7 +662,7 @@
 
       <label class="product-card is-hidden" data-category="frankincense">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 1 كيلو">
+        <img class="product-image" src="images/optimized/frankincense.webp" alt="لبان LUMINOR 1 كيلو" width="900" height="900" loading="lazy" decoding="async">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 1 كيلو</h2>
           <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
@@ -781,7 +785,7 @@
 
   <div class="order-bar">
     <div class="order-inner">
-      <button class="order-button" type="button" id="orderButton">اطلب الآن عبر الواتساب</button>
+      <a class="order-button" id="orderButton" href="https://api.whatsapp.com/send?phone=96898939222" target="_blank" rel="noopener">اطلب الآن عبر الواتساب</a>
     </div>
   </div>
 
@@ -793,6 +797,34 @@
     const categoryButtons = document.querySelectorAll(".category-button");
     const checkboxes = document.querySelectorAll('input[name="product"]');
     const orderButton = document.getElementById("orderButton");
+
+    function getSelectedProducts() {
+      return Array.from(checkboxes)
+        .filter((checkbox) => checkbox.checked)
+        .map((checkbox) => checkbox.value);
+    }
+
+    function buildOrderMessage(selectedProducts) {
+      return [
+        "طلب جديد من LUMINOR",
+        "المنتجات المختارة:",
+        ...selectedProducts.map((product) => `- ${product}`),
+        "",
+        "أرغب بتأكيد الطلب والتوصيل."
+      ].join("\n");
+    }
+
+    function buildWhatsappUrl(message = "") {
+      const text = message ? `&text=${encodeURIComponent(message)}` : "";
+      return `https://api.whatsapp.com/send?phone=${whatsappNumber}${text}`;
+    }
+
+    function updateOrderLink() {
+      const selectedProducts = getSelectedProducts();
+      orderButton.href = selectedProducts.length
+        ? buildWhatsappUrl(buildOrderMessage(selectedProducts))
+        : buildWhatsappUrl();
+    }
 
     function showCategory(category) {
       categoryButtons.forEach((button) => {
@@ -815,7 +847,10 @@
     showCategory("all");
 
     checkboxes.forEach((checkbox) => {
-      checkbox.addEventListener("change", () => updateCardState(checkbox));
+      checkbox.addEventListener("change", () => {
+        updateCardState(checkbox);
+        updateOrderLink();
+      });
     });
 
     cards.forEach((card) => {
@@ -824,31 +859,24 @@
           const checkbox = card.querySelector('input[name="product"]');
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
+          updateOrderLink();
         }
       });
     });
 
-    orderButton.addEventListener("click", () => {
-      const selectedProducts = Array.from(checkboxes)
-        .filter((checkbox) => checkbox.checked)
-        .map((checkbox) => checkbox.value);
+    orderButton.addEventListener("click", (event) => {
+      const selectedProducts = getSelectedProducts();
 
       if (!selectedProducts.length) {
+        event.preventDefault();
         alert("يرجى اختيار منتج واحد على الأقل");
         return;
       }
 
-      const message = [
-        "طلب جديد من LUMINOR",
-        "المنتجات المختارة:",
-        ...selectedProducts.map((product) => `- ${product}`),
-        "",
-        "أرغب بتأكيد الطلب والتوصيل."
-      ].join("\n");
-
-      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
+      updateOrderLink();
     });
+
+    updateOrderLink();
   </script>
 </body>
 </html>
