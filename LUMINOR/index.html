@@ -814,6 +814,27 @@
       ].join("\n");
     }
 
+    function isIOSDevice() {
+      return /iPad|iPhone|iPod/.test(navigator.userAgent)
+        || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    }
+
+    function buildWhatsappUrl(selectedProducts) {
+      const message = buildOrderMessage(selectedProducts);
+      const encodedMessage = encodeURIComponent(message);
+
+      if (isIOSDevice()) {
+        return `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
+      }
+
+      return `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    }
+
+    function updateWhatsappLink() {
+      const selectedProducts = getSelectedProducts();
+      whatsappBtn.href = selectedProducts.length ? buildWhatsappUrl(selectedProducts) : "#";
+    }
+
     function showCategory(category) {
       categoryButtons.forEach((button) => {
         button.classList.toggle("is-active", button.dataset.category === category);
@@ -837,6 +858,7 @@
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         updateCardState(checkbox);
+        updateWhatsappLink();
       });
     });
 
@@ -846,9 +868,13 @@
           const checkbox = card.querySelector('input[name="product"]');
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
+          updateWhatsappLink();
         }
       });
     });
+
+    whatsappBtn.addEventListener("pointerdown", updateWhatsappLink);
+    whatsappBtn.addEventListener("touchstart", updateWhatsappLink);
 
     whatsappBtn.addEventListener("click", function (event) {
       const selectedProducts = getSelectedProducts();
@@ -859,9 +885,10 @@
         return;
       }
 
-      const message = buildOrderMessage(selectedProducts);
-      whatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      whatsappBtn.href = buildWhatsappUrl(selectedProducts);
     });
+
+    updateWhatsappLink();
   </script>
 </body>
 </html>
