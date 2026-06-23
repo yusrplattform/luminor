@@ -185,6 +185,10 @@
       display: none;
     }
 
+    .product-card.is-sold-out {
+      cursor: not-allowed;
+    }
+
     .comments {
       margin-top: 34px;
       padding-bottom: 18px;
@@ -254,12 +258,49 @@
       }
     }
 
+    .product-media {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: 7px;
+    }
+
+    .product-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(78, 88, 70, 0) 45%, rgba(78, 88, 70, .22) 100%);
+      pointer-events: none;
+    }
+
     .product-image {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
       background: var(--off-white);
       border-radius: 7px;
+    }
+
+    .sold-out-badge {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 31px;
+      padding: 5px 13px;
+      color: var(--white);
+      background: linear-gradient(135deg, #B5443A, #8F2D2D);
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      line-height: 1;
+      box-shadow: 0 10px 22px rgba(143, 45, 45, .28);
+      transform: rotate(-4deg);
     }
 
     .product-body {
@@ -322,6 +363,10 @@
       margin: 0;
       accent-color: var(--button);
       cursor: pointer;
+    }
+
+    .select-row input:disabled {
+      cursor: not-allowed;
     }
 
     .selected-badge {
@@ -490,9 +535,12 @@
         </span>
       </label>
 
-      <label class="product-card is-hidden" data-category="hair">
+      <label class="product-card is-hidden is-sold-out" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/luminor_herbal_henna_mix.png" alt="الحنا بالأعشاب LUMINOR">
+        <span class="product-media">
+          <img class="product-image" src="images/luminor_herbal_henna_mix.png" alt="الحنا بالأعشاب LUMINOR">
+          <span class="sold-out-badge">SOLD OUT</span>
+        </span>
         <span class="product-body">
           <h2 class="product-name">الحنا بالأعشاب LUMINOR</h2>
           <p class="product-desc">خلطة حنا بالأعشاب للعناية بالشعر ومنحه مظهراً صحياً وطبيعياً.</p>
@@ -501,8 +549,8 @@
             <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
-            <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع / 78 ر.س">
+            <span>غير متوفر</span>
+            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع / 78 ر.س" disabled>
           </span>
         </span>
       </label>
@@ -558,9 +606,12 @@
         </span>
       </label>
 
-      <label class="product-card" data-category="body">
+      <label class="product-card is-sold-out" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
-        <img class="product-image" src="images/luminor_yemeni_wars_soap.png" alt="الورس اليمني LUMINOR">
+        <span class="product-media">
+          <img class="product-image" src="images/luminor_yemeni_wars_soap.png" alt="الورس اليمني LUMINOR">
+          <span class="sold-out-badge">SOLD OUT</span>
+        </span>
         <span class="product-body">
           <h2 class="product-name">الورس اليمني LUMINOR</h2>
           <p class="product-desc">ورس يمني للعناية بالبشرة ومنحها إحساساً بالنظافة والنعومة.</p>
@@ -569,8 +620,8 @@
             <span class="price-pill">68 ر.س</span>
           </span>
           <span class="select-row">
-            <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع / 68 ر.س">
+            <span>غير متوفر</span>
+            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع / 68 ر.س" disabled>
           </span>
         </span>
       </label>
@@ -883,6 +934,10 @@
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           const checkbox = card.querySelector('input[name="product"]');
+          if (checkbox.disabled) {
+            return;
+          }
+
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
           updateWhatsappLink();
