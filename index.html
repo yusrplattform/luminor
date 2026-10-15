@@ -462,7 +462,13 @@
         animation: none;
       }
     }
-    .store-info { margin-top: 38px; padding: clamp(18px, 4vw, 32px); background: var(--white); border: 1px solid var(--line); border-radius: 18px; color: var(--dark); }
+    .store-info { width: min(760px, calc(100% - 28px)); max-height: 85dvh; padding: clamp(18px, 4vw, 32px); background: var(--white); border: 1px solid var(--line); border-radius: 18px; color: var(--dark); overflow-y: auto; line-height: 1.9; }
+    .store-info::backdrop { background: rgb(30 40 26 / 50%); backdrop-filter: blur(4px); }
+    .store-info [hidden] { display: none; }
+    .store-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px auto 0; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); }
+    .store-nav a { padding: 8px 12px; color: var(--dark); text-decoration: none; border-radius: 8px; font-size: .9rem; }
+    .store-nav a:hover, .store-nav a:focus-visible { background: var(--off-white); }
+    .dialog-close { display: block; margin-inline-start: auto; margin-bottom: 12px; padding: 7px 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--off-white); color: var(--dark); cursor: pointer; font: inherit; }
     .store-info h2 { margin-top: 0; }
     .policy-nav { display: flex; flex-wrap: wrap; gap: 10px 20px; margin-bottom: 22px; }
     .store-info a { color: var(--dark); text-underline-offset: 4px; }
@@ -488,6 +494,14 @@
       <div class="shipping-note">يوجد شحن لكافة دول الخليج — تكلفة الشحن لكل كيلوجرام: 7 ر.ع / حوالي 68 ر.س</div>
       <br>
         <a class="instagram-link" href="https://www.instagram.com/luminor_care">@luminor_care</a>
+      <nav class="store-nav" aria-label="معلومات المتجر والسياسات">
+        <a href="#company-info" data-policy="company-info">معلومات المتجر</a>
+        <a href="#delivery-policy" data-policy="delivery-policy">الشحن والتوصيل</a>
+        <a href="#terms-policy" data-policy="terms-policy">الشروط والأحكام</a>
+        <a href="#refund-policy" data-policy="refund-policy">الإرجاع والإلغاء</a>
+        <a href="#privacy-policy" data-policy="privacy-policy">الخصوصية</a>
+        <a href="#payment-info" data-policy="payment-info">الدفع والأمان</a>
+      </nav>
     </header>
 
     <nav class="categories" aria-label="تصنيفات المنتجات">
@@ -871,10 +885,11 @@
         </div>
       </div>
     </section>
-    <section class="store-info" aria-labelledby="store-info-title">
+    <dialog class="store-info" id="store-dialog" aria-labelledby="store-info-title">
+      <button type="button" class="dialog-close" id="close-store-dialog">إغلاق ×</button>
       <h2 id="store-info-title">معلومات المتجر والسياسات</h2>
       <p>آخر تحديث للسياسات: 15 أكتوبر 2026.</p>
-      <nav class="policy-nav" aria-label="روابط معلومات المتجر">
+      <nav class="policy-nav" aria-label="روابط معلومات المتجر" hidden>
         <a href="#company-info">الشركة والتواصل</a>
         <a href="#delivery-policy">الشحن والتوصيل</a>
         <a href="#terms-policy">الشروط والأحكام</a>
@@ -953,7 +968,7 @@
         <p>قبول Visa وMastercard قيد التفعيل بعد اعتماد بوابة الدفع. تُؤكد وسيلة الدفع المتاحة مع خدمة العملاء قبل إتمام الطلب.</p>
         <p>يستخدم <a href="https://luminor-ten.vercel.app/">موقع LUMINOR</a> اتصال HTTPS بشهادة SSL/TLS لحماية البيانات أثناء النقل، ويُعاد توجيه اتصالات HTTP تلقائيًا إلى HTTPS.</p>
       </details>
-    </section>
+    </dialog>
   </main>
 
   <div class="page" style="padding-top:0;padding-bottom:120px">
@@ -967,6 +982,24 @@
   </div>
 
   <script>
+    const storeDialog = document.getElementById("store-dialog");
+    const policySections = storeDialog.querySelectorAll("details");
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      const section = document.getElementById(link.hash.slice(1));
+      if (!section || !storeDialog.contains(section) || section.tagName !== "DETAILS") return;
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        policySections.forEach((item) => { item.hidden = item !== section; });
+        section.open = true;
+        if (!storeDialog.open) storeDialog.showModal();
+        storeDialog.scrollTop = 0;
+      });
+    });
+    document.getElementById("close-store-dialog").addEventListener("click", () => storeDialog.close());
+    storeDialog.addEventListener("click", (event) => {
+      const bounds = storeDialog.getBoundingClientRect();
+      if (event.target === storeDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) storeDialog.close();
+    });
     // لتغيير رقم الواتساب: عدلي الرقم هنا بصيغة دولية بدون علامة + أو مسافات.
     const whatsappNumber = "96898939222";
 
