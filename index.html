@@ -480,6 +480,11 @@
     .company-details dd { margin: 0; }
     .pending-info { color: #78521d; background: #fff6e5; padding: 3px 8px; border-radius: 5px; }
     .setup-notice { padding: 14px; border: 1px solid #e4cca3; border-radius: 10px; background: #fff6e5; }
+    .payment-acceptance { text-align: center; margin-top: 20px; }
+    .payment-label { margin: 0; color: var(--dark); font-weight: 700; }
+    .payment-acceptance .payment-logos { justify-content: center; direction: ltr; margin: 10px 0; }
+    .payment-status { margin: 0; font-size: .8rem; }
+    .payment-footer { border-top: 1px solid var(--line); margin-top: 28px; padding: 4px 0 20px; }
     .payment-logos { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; margin: 16px 0; }
     .payment-logos svg { width: 94px; height: 60px; border: 1px solid var(--line); border-radius: 8px; background: white; }
     @media (max-width: 480px) { .company-details { grid-template-columns: 1fr; gap: 4px; } .company-details dd { margin-bottom: 12px; } }
@@ -502,6 +507,14 @@
         <a href="#privacy-policy" data-policy="privacy-policy">الخصوصية</a>
         <a href="#payment-info" data-policy="payment-info">الدفع والأمان</a>
       </nav>
+      <div class="payment-acceptance">
+        <p class="payment-label">????? ????? ? Payment methods</p>
+        <div class="payment-logos" aria-label="Visa وMastercard — قبول البطاقات قيد التفعيل">
+          <svg viewBox="0 0 94 60" role="img" aria-label="Visa"><text x="47" y="39" text-anchor="middle" fill="#1434cb" font-family="Arial, sans-serif" font-style="italic" font-weight="900" font-size="30">VISA</text></svg>
+          <svg viewBox="0 0 94 60" role="img" aria-label="Mastercard"><circle cx="36" cy="25" r="17" fill="#eb001b"/><circle cx="57" cy="25" r="17" fill="#f79e1b"/><path d="M46.5 11.63a17 17 0 0 1 0 26.74 17 17 0 0 1 0-26.74" fill="#ff5f00"/><text x="47" y="53" text-anchor="middle" fill="#222" font-family="Arial, sans-serif" font-size="9">mastercard</text></svg>
+        </div>
+        <p class="payment-status">????? ????????? ??? ???????</p>
+      </div>
     </header>
 
     <nav class="categories" aria-label="تصنيفات المنتجات">
@@ -885,6 +898,16 @@
         </div>
       </div>
     </section>
+    <footer class="payment-footer" aria-label="????? ?????">
+      <div class="payment-acceptance">
+        <p class="payment-label">????? ????? ? Payment methods</p>
+        <div class="payment-logos" aria-label="Visa وMastercard — قبول البطاقات قيد التفعيل">
+          <svg viewBox="0 0 94 60" role="img" aria-label="Visa"><text x="47" y="39" text-anchor="middle" fill="#1434cb" font-family="Arial, sans-serif" font-style="italic" font-weight="900" font-size="30">VISA</text></svg>
+          <svg viewBox="0 0 94 60" role="img" aria-label="Mastercard"><circle cx="36" cy="25" r="17" fill="#eb001b"/><circle cx="57" cy="25" r="17" fill="#f79e1b"/><path d="M46.5 11.63a17 17 0 0 1 0 26.74 17 17 0 0 1 0-26.74" fill="#ff5f00"/><text x="47" y="53" text-anchor="middle" fill="#222" font-family="Arial, sans-serif" font-size="9">mastercard</text></svg>
+        </div>
+        <p class="payment-status">????? ????????? ??? ???????</p>
+      </div>
+    </footer>
     <dialog class="store-info" id="store-dialog" aria-labelledby="store-info-title">
       <button type="button" class="dialog-close" id="close-store-dialog">إغلاق ×</button>
       <h2 id="store-info-title">معلومات المتجر والسياسات</h2>
