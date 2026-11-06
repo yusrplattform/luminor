@@ -1,0 +1,11 @@
+﻿const assert = require('node:assert/strict');
+const { calculate } = require('./shipping.js');
+const a = 'منتج - 4.500 ر.ع / 44 ر.س', b = 'زيت - 5.000 ر.ع / 49 ر.س';
+const config = { [a]: { weightGrams: 250, shippingClass: 'regular' }, [b]: { weightGrams: 125, shippingClass: 'oil' } };
+const mixed = calculate([a, b], 'OM', config).lines.join('\n');
+assert.match(mixed, /1\.750 ر\.ع/); assert.match(mixed, /1\.125 ر\.ع/); assert.match(mixed, /12\.375 ر\.ع/);
+assert.doesNotMatch(calculate([a], 'other', config).lines.join('\n'), /الإجمالي:/);
+assert.doesNotMatch(calculate([a], 'OM', {}).lines.join('\n'), /الإجمالي:/);
+assert.doesNotMatch(calculate([a], 'OM', { [a]: { weightGrams: 250, shippingClass: null } }).lines.join('\n'), /الإجمالي:/);
+assert.doesNotMatch(calculate([a], '', config).lines.join('\n'), /الإجمالي:/);
+console.log('Shipping checks passed');
