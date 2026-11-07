@@ -506,6 +506,7 @@
     #shippingSummary { padding: 14px; background: #f5f7f1; border-radius: 12px; margin: 14px 0; overflow-wrap: anywhere; }
     .whatsapp-help { font-size: .9rem; }
     .whatsapp-help a { color: #345c3c; }
+    .customs-notice { padding: 12px 14px; background: #fff4dc; color: #654615; border: 1px solid #e8cf99; border-radius: 10px; font-weight: 700; }
     .order-inner { gap: 10px; }
     .review-link { color: #344b37; background: #fff; border: 1px solid #b7c6a3; padding: 12px; border-radius: 12px; text-align: center; text-decoration: none; font-weight: bold; min-width: 110px; }
     :focus-visible { outline: 3px solid #466a46; outline-offset: 3px; }
@@ -944,13 +945,13 @@
           <dt>العنوان الرسمي</dt><dd><bdi>Barka / Barka / South Al Batinah Governorate</bdi></dd>
           <dt>بريد دعم العملاء</dt><dd><a href="mailto:fuad@yusr.om" dir="ltr">fuad@yusr.om</a></dd>
           <dt>الهاتف</dt><dd><a href="tel:+96898939222" dir="ltr">+968 98939222</a></dd>
-          <dt>واتساب</dt><dd><a href="https://wa.me/96898939222">تواصل مع خدمة العملاء</a></dd>
+          <dt>واتساب</dt><dd><a href="https://api.whatsapp.com/send?phone=96898939222">تواصل مع خدمة العملاء</a></dd>
         </dl>
       </details>
 
       <details id="delivery-policy" open>
         <summary>الشحن والتوصيل — Shipping &amp; Delivery</summary>
-        <p>الشحن إلى عُمان والسعودية والإمارات والبحرين وقطر والكويت حسب الوزن الفعلي: ٧ ر.ع لكل كيلوجرام للمنتجات غير الزيتية و٩ ر.ع للزيوت، وتحسب الأوزان الأقل من كيلوجرام بالتناسب. لا يشمل الشحن الجمارك أو الضرائب أو رسوم الاستيراد. لبقية الدول تؤكد تكلفة الشحن مع خدمة العملاء قبل الدفع.</p>
+        <p>الشحن إلى عُمان والسعودية والإمارات والبحرين وقطر والكويت حسب الوزن الفعلي: ٧ ر.ع لكل كيلوجرام للمنتجات غير الزيتية و٩ ر.ع للزيوت، وتحسب الأوزان الأقل من كيلوجرام بالتناسب. تُؤكد تكلفة الشحن والإجمالي النهائي مع خدمة العملاء عبر واتساب لجميع الدول قبل الدفع. لا يشمل الشحن الجمارك أو الضرائب أو رسوم الاستيراد.</p>
         <ul>
           <li>مدة التوصيل التقديرية داخل سلطنة عُمان وجميع دول الخليج: من 3 إلى 7 أيام عمل من تأكيد الطلب، باستثناء العطلات الرسمية.</li>
         </ul>
@@ -1010,8 +1011,8 @@
   </div>
   <section class="page checkout-summary" id="checkout" aria-labelledby="checkout-title">
     <h2 id="checkout-title">ملخص الطلب والشحن</h2>
-    <p>الشحن لا يشمل الجمارك أو الضرائب أو رسوم الاستيراد.</p>
-    <label for="deliveryCountry">دولة التوصيل</label>
+    <p class="customs-notice">تنبيه: تكلفة الشحن لا تشمل الرسوم الجمركية أو ضرائب الاستيراد أو أي رسوم استيراد أخرى.</p>
+    <label for="deliveryCountry">منطقة الشحن — دولة التوصيل</label>
     <select id="deliveryCountry"><option value="">اختاري الدولة</option><option value="OM">عُمان</option><option value="SA">السعودية</option><option value="AE">الإمارات</option><option value="BH">البحرين</option><option value="QA">قطر</option><option value="KW">الكويت</option><option value="other">دولة أخرى</option></select>
     <div id="otherDetails" hidden>
       <label>الدولة <input id="otherCountry" maxlength="80" autocomplete="country-name"></label>
@@ -1021,7 +1022,7 @@
     </div>
     <div id="shippingSummary" aria-live="polite">اختاري المنتجات ودولة التوصيل لعرض ملخص الطلب.</div>
     <p>الدفع الإلكتروني قيد التجهيز. يُرجى إرسال الطلب عبر واتساب لتأكيد التوافر والشحن وطريقة الدفع.</p>
-    <p class="whatsapp-help">إذا لم يفتح واتساب، يمكنك التواصل مباشرة على <a href="https://wa.me/96898939222" dir="ltr">+968 9893 9222</a> وإرسال المنتجات المختارة.</p>
+    <p class="whatsapp-help">إذا لم يفتح واتساب، يمكنك التواصل مباشرة على <a href="https://api.whatsapp.com/send?phone=96898939222" dir="ltr">+968 9893 9222</a> وإرسال المنتجات المختارة.</p>
   </section>
   <div class="order-bar">
     <div class="order-inner">
@@ -1106,7 +1107,7 @@
     function buildWhatsappUrl(selectedProducts) {
       const message = buildOrderMessage(selectedProducts);
       const encodedMessage = encodeURIComponent(message);
-      return `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      return `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
     }
 
     function updateWhatsappLink() {
@@ -1167,6 +1168,13 @@
       if (!selectedProducts.length) {
         event.preventDefault();
         alert("يرجى اختيار منتج واحد على الأقل");
+        return;
+      }
+
+      if (!country.value) {
+        event.preventDefault();
+        document.getElementById("checkout").scrollIntoView({ behavior: "smooth", block: "start" });
+        country.focus({ preventScroll: true });
         return;
       }
 
