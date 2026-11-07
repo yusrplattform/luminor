@@ -492,6 +492,24 @@
     .checkout-summary select, .checkout-summary input { display: block; width: 100%; max-width: 460px; padding: 10px; margin: 8px 0 14px; font: inherit; border: 1px solid var(--line); border-radius: 8px; }
     .checkout-summary li { margin: 5px 0; }
     .product-shipping-note { display: block; font-size: .78rem; margin-top: 8px; }
+    body { background: linear-gradient(180deg, #eef2e8 0, #f7f6f1 480px); color: #515c4d; }
+    .header { padding: 28px 0 30px; }
+    .logo { width: min(160px, 48vw); }
+    .shipping-note { background: #536d4b; line-height: 1.7; }
+    .product-card { border-radius: 16px; padding: 12px; }
+    .product-image, .product-media { border-radius: 11px; }
+    .product-name { color: #344b37; }
+    .category-button, .order-btn { border-radius: 12px; }
+    .checkout-summary { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: clamp(18px, 4vw, 32px); margin-bottom: 145px; box-shadow: var(--shadow); }
+    .checkout-summary h2 { color: var(--dark); margin-top: 0; }
+    .checkout-summary p { margin: 8px 0; }
+    #shippingSummary { padding: 14px; background: #f5f7f1; border-radius: 12px; margin: 14px 0; overflow-wrap: anywhere; }
+    .whatsapp-help { font-size: .9rem; }
+    .whatsapp-help a { color: #345c3c; }
+    .order-inner { gap: 10px; }
+    .review-link { color: #344b37; background: #fff; border: 1px solid #b7c6a3; padding: 12px; border-radius: 12px; text-align: center; text-decoration: none; font-weight: bold; min-width: 110px; }
+    :focus-visible { outline: 3px solid #466a46; outline-offset: 3px; }
+    @media (max-width: 480px) { .categories { grid-template-columns: repeat(2, minmax(0, 1fr)); } .category-button { min-height: 44px; font-size: .85rem; } .products { gap: 10px; } .product-card { padding: 8px; } .order-inner { gap: 8px; } .review-link { min-width: 90px; font-size: .84rem; } .order-btn { font-size: .9rem; } }
   </style>
 </head>
 <body>
@@ -990,7 +1008,7 @@
     <label><input id="marketingConsent" type="checkbox"> أوافق اختياريًا على استقبال عروض LUMINOR عبر واتساب على رقم الطلب. يمكنني إلغاء الاشتراك في أي وقت، ولا يؤثر رفضي على الشراء.</label>
     <p>بإرسال الطلب تطلب معالجة بياناته للتواصل وتنفيذه وفق <a href="#privacy-policy">سياسة الخصوصية</a> و<a href="#terms-policy">شروط الطلب</a>.</p>
   </div>
-  <section class="page checkout-summary" aria-labelledby="checkout-title">
+  <section class="page checkout-summary" id="checkout" aria-labelledby="checkout-title">
     <h2 id="checkout-title">ملخص الطلب والشحن</h2>
     <p>الشحن لا يشمل الجمارك أو الضرائب أو رسوم الاستيراد.</p>
     <label for="deliveryCountry">دولة التوصيل</label>
@@ -1003,9 +1021,11 @@
     </div>
     <div id="shippingSummary" aria-live="polite">اختاري المنتجات ودولة التوصيل لعرض ملخص الطلب.</div>
     <p>الدفع الإلكتروني قيد التجهيز. يُرجى إرسال الطلب عبر واتساب لتأكيد التوافر والشحن وطريقة الدفع.</p>
+    <p class="whatsapp-help">إذا لم يفتح واتساب، يمكنك التواصل مباشرة على <a href="https://wa.me/96898939222" dir="ltr">+968 9893 9222</a> وإرسال المنتجات المختارة.</p>
   </section>
   <div class="order-bar">
     <div class="order-inner">
+      <a class="review-link" href="#checkout">مراجعة الطلب <span id="selectionCount">(0)</span></a>
       <a id="whatsappBtn" href="#" class="order-btn">اطلب الآن عبر الواتساب</a>
     </div>
   </div>
@@ -1074,7 +1094,7 @@
         "المنتجات المختارة:",
         ...selectedProducts.map((product) => `- ${product}`),
         "",
-        ...shippingResult().lines,
+        ...shippingResult().lines.filter((line) => !selectedProducts.some((product) => line.startsWith(product))),
         ...(country.value === "other" ? ["الدولة: " + document.getElementById("otherCountry").value, "الاسم: " + document.getElementById("customerName").value, "رقم التواصل: " + document.getElementById("customerPhone").value, "العنوان: " + document.getElementById("customerAddress").value] : country.value ? ["دولة التوصيل: " + country.options[country.selectedIndex].text] : []),
         "أرغب بتأكيد الطلب والتوصيل.",
         document.getElementById("marketingConsent").checked
@@ -1083,24 +1103,15 @@
       ].join("\n");
     }
 
-    function isIOSDevice() {
-      return /iPad|iPhone|iPod/.test(navigator.userAgent)
-        || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-    }
-
     function buildWhatsappUrl(selectedProducts) {
       const message = buildOrderMessage(selectedProducts);
       const encodedMessage = encodeURIComponent(message);
-
-      if (isIOSDevice()) {
-        return `whatsapp://send?phone=${whatsappNumber}&text=${encodedMessage}`;
-      }
-
       return `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
     }
 
     function updateWhatsappLink() {
       const selectedProducts = getSelectedProducts();
+      document.getElementById("selectionCount").textContent = `(${selectedProducts.length})`;
       whatsappBtn.href = selectedProducts.length ? buildWhatsappUrl(selectedProducts) : "#";
     }
 
