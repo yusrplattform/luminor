@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ملخص طلبك | LUMINOR</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f6f7f2; color: #344b37; font: 16px/1.7 Tahoma, Arial, sans-serif; }
+    .wrap { width: min(620px, calc(100% - 32px)); margin: 0 auto; padding: 32px 0 56px; }
+    header { text-align: center; margin-bottom: 24px; }
+    .logo { width: 120px; max-width: 40%; height: auto; }
+    h1 { font-size: 1.6rem; margin: 16px 0 2px; }
+    header p { color: #687568; margin: 0; }
+    .panel { background: #fff; border: 1px solid #dee5d6; border-radius: 18px; padding: clamp(18px, 5vw, 28px); box-shadow: 0 10px 28px #5060440d; }
+    h2 { margin: 0 0 12px; font-size: 1.12rem; }
+    .item { display: flex; align-items: start; justify-content: space-between; gap: 14px; padding: 12px 0; border-bottom: 1px solid #edf0ea; }
+    .item-name { font-weight: 700; }
+    .item-price { color: #687568; font-size: .88rem; }
+    .item-controls { display: flex; align-items: end; gap: 10px; }
+    .item-controls label { font-size: .8rem; margin: 0; }
+    .item-controls input { display: block; width: 62px; padding: 6px; border: 1px solid #bdcab8; border-radius: 8px; font: inherit; }
+    .remove { border: 0; background: none; color: #77534e; font: inherit; text-decoration: underline; cursor: pointer; padding: 6px; }
+    .total { display: flex; justify-content: space-between; gap: 16px; font-weight: 700; padding: 18px 0; }
+    .edit { display: inline-block; color: #4d704c; text-underline-offset: 4px; margin-bottom: 22px; }
+    label { display: block; font-weight: 700; margin-bottom: 8px; }
+    select, input[type=text], input[type=tel] { width: 100%; padding: 12px; border: 1px solid #bdcab8; border-radius: 10px; background: white; color: #344b37; font: inherit; }
+    #otherDetails label { margin-top: 14px; }
+    .shipping { background: #f4f7f1; border-radius: 12px; padding: 14px; margin: 18px 0; font-size: .93rem; }
+    .shipping p { margin: 4px 0; }
+    .consent { display: flex; gap: 9px; align-items: flex-start; font-size: .88rem; font-weight: normal; margin: 20px 0; }
+    .consent input { margin-top: 7px; }
+    .submit { display: block; width: 100%; text-align: center; background: #536d4b; color: white; border: 0; border-radius: 12px; padding: 14px; font: inherit; font-weight: 700; cursor: pointer; }
+    .submit:hover { background: #40593a; }
+    .fine { font-size: .85rem; color: #687568; margin: 12px 0 0; }
+    a { color: #456c45; }
+    .empty { text-align: center; }
+    .error { color: #a13b32; margin: 10px 0; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 3px solid #66845e; outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header><a href="index.html" aria-label="العودة إلى المتجر"><img class="logo" src="logo.png" alt="LUMINOR"></a><h1>ملخص طلبك</h1><p>خطوة بسيطة قبل تأكيد طلبك</p></header>
+    <section class="panel" id="empty" hidden><div class="empty"><h2>لم تختاري منتجات بعد</h2><p>اختاري ما يناسبك من المتجر للبدء.</p><a href="index.html">العودة إلى المنتجات</a></div></section>
+    <form class="panel" id="checkoutForm" hidden>
+      <h2>منتجاتك</h2>
+      <div id="items"></div>
+      <div class="total"><span>إجمالي المنتجات</span><span id="subtotal"></span></div>
+      <a class="edit" href="index.html">تعديل المنتجات</a>
+      <label for="deliveryCountry">دولة التوصيل</label>
+      <select id="deliveryCountry" required><option value="">اختاري الدولة</option><option value="OM">عُمان</option><option value="SA">السعودية</option><option value="AE">الإمارات</option><option value="BH">البحرين</option><option value="QA">قطر</option><option value="KW">الكويت</option><option value="other">دولة أخرى</option></select>
+      <div id="otherDetails" hidden>
+        <label for="otherCountry">الدولة</label><input id="otherCountry" type="text" maxlength="80" autocomplete="country-name">
+        <label for="customerName">الاسم</label><input id="customerName" type="text" maxlength="100" autocomplete="name">
+        <label for="customerPhone">رقم التواصل</label><input id="customerPhone" type="tel" maxlength="40" autocomplete="tel">
+        <label for="customerAddress">عنوان التوصيل</label><input id="customerAddress" type="text" maxlength="200" autocomplete="street-address">
+      </div>
+      <div class="shipping"><p>التوصيل المتوقع لعُمان ودول الخليج: ٣–٧ أيام عمل بعد تأكيد الطلب.</p><p id="shippingCost" aria-live="polite">اختاري دولة التوصيل لعرض تكلفة الشحن.</p><p id="grandTotal" aria-live="polite"></p><p>يُحتسب الشحن على أساس وزن تقديري قدره ٥٠٠ جرام لكل قطعة: ٧ ر.ع/كجم، أو ٩ ر.ع/كجم للطلب كاملًا إذا احتوى على زيت. لا يشمل الشحن الجمارك أو الضرائب أو رسوم الاستيراد.</p></div>
+      <label class="consent"><input id="marketingConsent" type="checkbox"><span>أوافق اختياريًا على استقبال عروض LUMINOR عبر واتساب، ويمكنني إلغاء الموافقة في أي وقت.</span></label>
+      <p class="error" id="error" role="alert" hidden></p>
+      <button class="submit" type="submit">إرسال الطلب عبر واتساب</button>
+      <p class="fine">بعد إرسال طلبك، سنراجع معك التفاصيل والشحن، ثم نرسل لك رابط الدفع عبر واتساب.</p>
+      <p class="fine">بإرسال الطلب تطلبين معالجة بياناته وفق <a href="index.html#privacy-policy">سياسة الخصوصية</a> و<a href="index.html#terms-policy">شروط الطلب</a>.</p>
+    </form>
+  </main>
+  <script src="product-shipping.js"></script>
+  <script src="shipping.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <!-- Advertising tags remain disabled until the container's vendors and cookies are reviewed. -->
@@ -509,6 +509,7 @@
     .customs-notice { padding: 12px 14px; background: #fff4dc; color: #654615; border: 1px solid #e8cf99; border-radius: 10px; font-weight: 700; }
     .order-inner { gap: 10px; }
     .review-link { color: #344b37; background: #fff; border: 1px solid #b7c6a3; padding: 12px; border-radius: 12px; text-align: center; text-decoration: none; font-weight: bold; min-width: 110px; }
+    [hidden] { display: none !important; }
     :focus-visible { outline: 3px solid #466a46; outline-offset: 3px; }
     @media (max-width: 480px) { .categories { grid-template-columns: repeat(2, minmax(0, 1fr)); } .category-button { min-height: 44px; font-size: .85rem; } .products { gap: 10px; } .product-card { padding: 8px; } .order-inner { gap: 8px; } .review-link { min-width: 90px; font-size: .84rem; } .order-btn { font-size: .9rem; } }
   </style>
@@ -517,19 +518,9 @@
   <main class="page">
     <header class="header">
       <img class="logo" src="logo.png" alt="LUMINOR">
-      <h1>منتجات LUMINOR للعناية</h1>
-      <p class="intro">اختاري المنتجات التي ترغبين بطلبها، ثم اضغطي اطلب الآن لإرسال الطلب عبر الواتساب.</p>
-      <div class="shipping-note">الشحن لدول الخليج: ٧ ر.ع لكل كجم للمنتجات غير الزيتية و٩ ر.ع لكل كجم للزيوت حسب الوزن الفعلي. لا يشمل الشحن الجمارك أو الضرائب أو رسوم الاستيراد.</div>
-      <br>
-        <a class="instagram-link" href="https://www.instagram.com/luminor_care">@luminor_care</a>
-      <nav class="store-nav" aria-label="معلومات المتجر والسياسات">
-        <a href="#company-info" data-policy="company-info">معلومات المتجر</a>
-        <a href="#delivery-policy" data-policy="delivery-policy">الشحن والتوصيل</a>
-        <a href="#terms-policy" data-policy="terms-policy">الشروط والأحكام</a>
-        <a href="#refund-policy" data-policy="refund-policy">الإرجاع والإلغاء</a>
-        <a href="#privacy-policy" data-policy="privacy-policy">الخصوصية</a>
-        <a href="#payment-info" data-policy="payment-info">الدفع والأمان</a>
-      </nav>
+      <h1>عناية لشعرك وبشرتك</h1>
+      <p class="intro">اكتشفي منتجات LUMINOR واختاري ما يناسبك.</p>
+      <div class="shipping-note">توصيل إلى عُمان ودول الخليج · تفاصيل الشحن تُؤكد قبل الدفع</div>
     </header>
 
     <nav class="categories" aria-label="تصنيفات المنتجات">
@@ -538,6 +529,8 @@
       <button class="category-button" type="button" data-category="hair">منتجات العناية بالشعر</button>
       <button class="category-button" type="button" data-category="frankincense">اللبان</button>
     </nav>
+    <p class="intro">للاستفسار عن المكونات أو طريقة الاستخدام أو ملاءمة المنتج لشعرك وبشرتك، <a href="https://api.whatsapp.com/send?phone=96898939222">تواصلي معنا</a>.</p>
+
 
     <section class="products" aria-label="منتجات LUMINOR">
       <!-- لتغيير صور المنتجات: ضعي الصور الجديدة داخل مجلد images ثم عدلي قيمة src لكل منتج. -->
@@ -547,14 +540,13 @@
         <img class="product-image" src="images/growth-mix.jpeg" alt="خلطة النمو والتكثيف LUMINOR">
         <span class="product-body">
           <h2 class="product-name">خلطة النمو والتكثيف LUMINOR</h2>
-          <p class="product-desc">خلطة للعناية بالشعر تحتوي على الحنا.</p>
+          <p class="product-desc">لحظات عناية مستوحاة من جمال الحنا، تمنح روتين شعرك لمسة تقليدية تحبينها. تحتوي على الحنا، 500 مل؛ استفسري عن تأثيرها على اللون وطريقة استخدامها قبل الشراء.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">12.000 ر.ع</span>
-            <span class="price-pill">117 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="خلطة النمو والتكثيف LUMINOR - 12.000 ر.ع / 117 ر.س">
+            <input type="checkbox" name="product" value="خلطة النمو والتكثيف LUMINOR - 12.000 ر.ع">
           </span>
         </span>
       </label>
@@ -564,14 +556,13 @@
         <img class="product-image" src="images/toner.jpeg" alt="تونر بخاخ LUMINOR">
         <span class="product-body">
           <h2 class="product-name">تونر بخاخ LUMINOR</h2>
-          <p class="product-desc">تونر بخاخ للعناية بالبشرة.</p>
+          <p class="product-desc">أضيفي لمسة لطيفة إلى روتين بشرتك مع تونر بخاخ يجعل لحظات العناية بنفسك أسهل وأجمل.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">2.000 ر.ع</span>
-            <span class="price-pill">20 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="تونر بخاخ LUMINOR - 2.000 ر.ع / 20 ر.س">
+            <input type="checkbox" name="product" value="تونر بخاخ LUMINOR - 2.000 ر.ع">
           </span>
         </span>
       </label>
@@ -581,14 +572,13 @@
         <img class="product-image" src="images/deep-mask.jpeg" alt="ماسك الترطيب العميق LUMINOR">
         <span class="product-body">
           <h2 class="product-name">ماسك الترطيب العميق LUMINOR</h2>
-          <p class="product-desc">ماسك ترطيب للشعر الناشف والمصبوغ، 500 مل.</p>
+          <p class="product-desc">امنحي شعرك الناشف أو المصبوغ وقتًا يستحقه من العناية مع ماسك الترطيب العميق، بحجم 500 مل. للاستفسار عن الفرق بينه وبين ماسك الشعر، تواصلي معنا.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">8.000 ر.ع</span>
-            <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="ماسك الترطيب العميق LUMINOR - 8.000 ر.ع / 78 ر.س">
+            <input type="checkbox" name="product" value="ماسك الترطيب العميق LUMINOR - 8.000 ر.ع">
           </span>
         </span>
       </label>
@@ -598,14 +588,13 @@
         <img class="product-image" src="images/hair-brush.png" alt="مشط LUMINOR">
         <span class="product-body">
           <h2 class="product-name">مشط LUMINOR</h2>
-          <p class="product-desc">مشط للعناية بالشعر.</p>
+          <p class="product-desc">اجعلي تمشيط شعرك جزءًا من لحظات العناية اليومية مع مشط LUMINOR، بتصميم مفتوح ومريح للاستخدام.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">3.500 ر.ع</span>
-            <span class="price-pill">34 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="مشط LUMINOR - 3.500 ر.ع / 34 ر.س">
+            <input type="checkbox" name="product" value="مشط LUMINOR - 3.500 ر.ع">
           </span>
         </span>
       </label>
@@ -614,15 +603,14 @@
         <img class="product-image" src="images/sidr.png" alt="سدر LUMINOR">
         <span class="product-body">
           <h2 class="product-name">سدر LUMINOR</h2>
-          <p class="product-desc">عناية طبيعية تمنح الشعر إحساساً بالانتعاش والخفة.</p>
+          <p class="product-desc">استمتعي بلحظة عناية مستوحاة من السدر، تمنح روتين شعرك إحساسًا بالانتعاش والخفة.</p>
           <!-- لتغيير السعر: عدلي القيمتين هنا وفي value داخل Checkbox لنفس المنتج. -->
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">4.500 ر.ع</span>
-            <span class="price-pill">44 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="سدر LUMINOR - 4.500 ر.ع / 44 ر.س">
+            <input type="checkbox" name="product" value="سدر LUMINOR - 4.500 ر.ع">
           </span>
         </span>
       </label>
@@ -632,14 +620,13 @@
         <img class="product-image" src="images/mishat.png" alt="مشاط LUMINOR">
         <span class="product-body">
           <h2 class="product-name">مشاط LUMINOR</h2>
-          <p class="product-desc">خلطة عناية تقليدية للشعر بلمسة ناعمة وفاخرة.</p>
+          <p class="product-desc">دلّلي شعرك بخلطة المشاط، ولمسة من تقاليد العناية التي تجعل روتينك أقرب إليك.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">6.000 ر.ع</span>
-            <span class="price-pill">59 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="مشاط LUMINOR - 6.000 ر.ع / 59 ر.س">
+            <input type="checkbox" name="product" value="مشاط LUMINOR - 6.000 ر.ع">
           </span>
         </span>
       </label>
@@ -651,14 +638,13 @@
         </span>
         <span class="product-body">
           <h2 class="product-name">الحنا العماني LUMINOR</h2>
-          <p class="product-desc">حنا عماني طبيعي للعناية بالشعر ومنحه لوناً ولمسة تقليدية ناعمة.</p>
+          <p class="product-desc">اكتشفي جمال الحنا العماني في روتينك، لعناية بالشعر ولمسة لون مستوحاة من التقاليد.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">3.000 ر.ع</span>
-            <span class="price-pill">29 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="الحنا العماني LUMINOR - 3.000 ر.ع / 29 ر.س">
+            <input type="checkbox" name="product" value="الحنا العماني LUMINOR - 3.000 ر.ع">
           </span>
         </span>
       </label>
@@ -670,14 +656,13 @@
         </span>
         <span class="product-body">
           <h2 class="product-name">الحنا بالأعشاب LUMINOR</h2>
-          <p class="product-desc">خلطة حنا بالأعشاب للعناية بالشعر ومنحه مظهراً صحياً وطبيعياً.</p>
+          <p class="product-desc">اجمعي بين الحنا والأعشاب في لحظة عناية تمنح شعرك لمسة مستوحاة من الطبيعة والتقاليد.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">8.000 ر.ع</span>
-            <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع / 78 ر.س">
+            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع">
           </span>
         </span>
       </label>
@@ -687,14 +672,13 @@
         <img class="product-image" src="images/hair-oil.png" alt="زيت الشعر LUMINOR">
         <span class="product-body">
           <h2 class="product-name">زيت الشعر LUMINOR</h2>
-          <p class="product-desc">زيت غني يساعد على ترطيب الشعر ومنحه لمعاناً صحياً.</p>
+          <p class="product-desc">خصّصي لشعرك لحظة عناية مع زيت يساعد على ترطيبه ويمنحه لمسة من اللمعان.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">8.000 ر.ع</span>
-            <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="زيت الشعر LUMINOR - 8.000 ر.ع / 78 ر.س">
+            <input type="checkbox" name="product" value="زيت الشعر LUMINOR - 8.000 ر.ع">
           </span>
         </span>
       </label>
@@ -704,14 +688,13 @@
         <img class="product-image" src="images/hair-mask.png" alt="ماسك الشعر LUMINOR">
         <span class="product-body">
           <h2 class="product-name">ماسك الشعر LUMINOR</h2>
-          <p class="product-desc">ماسك يمنح الشعر عناية عميقة ونعومة ملحوظة.</p>
+          <p class="product-desc">امنحي شعرك استراحة من مشاغل اليوم مع ماسك عناية يمنحه إحساسًا بالنعومة.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">7.000 ر.ع</span>
-            <span class="price-pill">68 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="ماسك الشعر LUMINOR - 7.000 ر.ع / 68 ر.س">
+            <input type="checkbox" name="product" value="ماسك الشعر LUMINOR - 7.000 ر.ع">
           </span>
         </span>
       </label>
@@ -721,14 +704,13 @@
         <img class="product-image" src="images/dalfur.png" alt="دالفور LUMINOR">
         <span class="product-body">
           <h2 class="product-name">دالفور LUMINOR</h2>
-          <p class="product-desc">كريم للعناية بالبشرة يساعد على تفتيحها وتوحيد لونها وتقليل مظهر البقع الداكنة وآثار الحبوب.</p>
+          <p class="product-desc">اجعلي العناية ببشرتك لحظة خاصة مع كريم دالفور. استفسري عن مكوناته وطريقة استخدامه ومدى ملاءمته لبشرتك.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">8.000 ر.ع</span>
-            <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="دالفور LUMINOR - 8.000 ر.ع / 78 ر.س">
+            <input type="checkbox" name="product" value="دالفور LUMINOR - 8.000 ر.ع">
           </span>
         </span>
       </label>
@@ -740,14 +722,13 @@
         </span>
         <span class="product-body">
           <h2 class="product-name">الورس اليمني LUMINOR</h2>
-          <p class="product-desc">ورس يمني للعناية بالبشرة ومنحها إحساساً بالنظافة والنعومة.</p>
+          <p class="product-desc">أضيفي لمسة من العناية التقليدية إلى يومك مع الورس اليمني، لإحساس بالنظافة والنعومة.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">7.000 ر.ع</span>
-            <span class="price-pill">68 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع / 68 ر.س">
+            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع">
           </span>
         </span>
       </label>
@@ -759,14 +740,13 @@
         </span>
         <span class="product-body">
           <h2 class="product-name">سنفرة الجسم LUMINOR</h2>
-          <p class="product-desc">سنفرة ناعمة تمنح الجسم ملمساً حريرياً ومنتعشاً.</p>
+          <p class="product-desc">دلّلي جسمك بلحظة عناية مع سنفرة ناعمة تترك إحساسًا بالانتعاش وملمسًا ناعمًا.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">8.500 ر.ع</span>
-            <span class="price-pill">83 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="سنفرة الجسم LUMINOR - 8.500 ر.ع / 83 ر.س">
+            <input type="checkbox" name="product" value="سنفرة الجسم LUMINOR - 8.500 ر.ع">
           </span>
         </span>
       </label>
@@ -776,14 +756,13 @@
         <img class="product-image" src="images/body-soap.png" alt="صابونية الجسم LUMINOR">
         <span class="product-body">
           <h2 class="product-name">صابونية الجسم LUMINOR</h2>
-          <p class="product-desc">صابونية عناية يومية تنظف البشرة بلطف وتتركها ناعمة.</p>
+          <p class="product-desc">ابدئي أو اختتمي يومك بلحظة لنفسك مع صابونية تنظف البشرة بلطف وتتركها ناعمة.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">8.000 ر.ع</span>
-            <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="صابونية الجسم LUMINOR - 8.000 ر.ع / 78 ر.س">
+            <input type="checkbox" name="product" value="صابونية الجسم LUMINOR - 8.000 ر.ع">
           </span>
         </span>
       </label>
@@ -793,14 +772,13 @@
         <img class="product-image" src="images/brightening-cream.png" alt="كريم التفتيح LUMINOR">
         <span class="product-body">
           <h2 class="product-name">كريم التفتيح LUMINOR</h2>
-          <p class="product-desc">كريم عناية يساعد على منح البشرة مظهراً أكثر إشراقاً ونعومة.</p>
+          <p class="product-desc">امنحي بشرتك لحظة اهتمام مع كريم عناية يساعد على إظهارها بإشراقة ونعومة.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">10.000 ر.ع</span>
-            <span class="price-pill">98 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="كريم التفتيح LUMINOR - 10.000 ر.ع / 98 ر.س">
+            <input type="checkbox" name="product" value="كريم التفتيح LUMINOR - 10.000 ر.ع">
           </span>
         </span>
       </label>
@@ -810,14 +788,13 @@
         <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 100 جرام">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 100 جرام</h2>
-          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <p class="product-desc">استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">2.400 ر.ع</span>
-            <span class="price-pill">23 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="لبان LUMINOR 100 جرام - 2.400 ر.ع / 23 ر.س">
+            <input type="checkbox" name="product" value="لبان LUMINOR 100 جرام - 2.400 ر.ع">
           </span>
         </span>
       </label>
@@ -827,14 +804,13 @@
         <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 250 جرام">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 250 جرام</h2>
-          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <p class="product-desc">استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">6.000 ر.ع</span>
-            <span class="price-pill">59 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="لبان LUMINOR 250 جرام - 6.000 ر.ع / 59 ر.س">
+            <input type="checkbox" name="product" value="لبان LUMINOR 250 جرام - 6.000 ر.ع">
           </span>
         </span>
       </label>
@@ -844,14 +820,13 @@
         <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 500 جرام">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 500 جرام</h2>
-          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <p class="product-desc">استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">12.000 ر.ع</span>
-            <span class="price-pill">117 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="لبان LUMINOR 500 جرام - 12.000 ر.ع / 117 ر.س">
+            <input type="checkbox" name="product" value="لبان LUMINOR 500 جرام - 12.000 ر.ع">
           </span>
         </span>
       </label>
@@ -861,20 +836,19 @@
         <img class="product-image" src="images/frankincense.png" alt="لبان LUMINOR 1 كيلو">
         <span class="product-body">
           <h2 class="product-name">لبان LUMINOR 1 كيلو</h2>
-          <p class="product-desc">لبان طبيعي مخصص للنقع والشرب والاستخدامات العلاجية اليومية.</p>
+          <p class="product-desc">استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.</p>
           <span class="price-row" aria-label="السعر">
             <span class="price-pill">24.000 ر.ع</span>
-            <span class="price-pill">234 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="لبان LUMINOR 1 كيلو - 24.000 ر.ع / 234 ر.س">
+            <input type="checkbox" name="product" value="لبان LUMINOR 1 كيلو - 24.000 ر.ع">
           </span>
         </span>
       </label>
     </section>
 
-    <section class="comments" aria-label="تعليقات العميلات">
+    <section class="comments" aria-label="تعليقات العميلات" hidden>
       <h2 class="comments-title">تعليقات العميلات</h2>
       <div class="comments-marquee">
         <div class="comments-track">
@@ -977,8 +951,17 @@
         </div>
       </div>
     </section>
-    <footer class="payment-footer" aria-label="وسائل الدفع">
-      <div class="payment-acceptance">
+    <footer class="payment-footer" aria-label="معلومات المتجر">
+      <a class="instagram-link" href="https://www.instagram.com/luminor_care">@luminor_care</a>
+    <nav class="store-nav" aria-label="معلومات المتجر والسياسات">
+        <a href="#company-info" data-policy="company-info">معلومات المتجر</a>
+        <a href="#delivery-policy" data-policy="delivery-policy">الشحن والتوصيل</a>
+        <a href="#terms-policy" data-policy="terms-policy">الشروط والأحكام</a>
+        <a href="#refund-policy" data-policy="refund-policy">الإرجاع والإلغاء</a>
+        <a href="#privacy-policy" data-policy="privacy-policy">الخصوصية</a>
+        <a href="#payment-info" data-policy="payment-info">الدفع والأمان</a>
+    </nav>
+      <div class="payment-acceptance" hidden>
         <p class="payment-label">وسائل الدفع &mdash; <bdi lang="en">Payment methods</bdi></p>
         <div class="payment-logos" aria-label="Visa وMastercard — قبول البطاقات قيد التفعيل">
           <svg viewBox="0 0 94 60" role="img" aria-label="Visa"><text x="47" y="39" text-anchor="middle" fill="#1434cb" font-family="Arial, sans-serif" font-style="italic" font-weight="900" font-size="30">VISA</text></svg>
@@ -1015,7 +998,7 @@
 
       <details id="delivery-policy" open>
         <summary>الشحن والتوصيل — Shipping &amp; Delivery</summary>
-        <p>الشحن إلى عُمان والسعودية والإمارات والبحرين وقطر والكويت حسب الوزن الفعلي: ٧ ر.ع لكل كيلوجرام للمنتجات غير الزيتية و٩ ر.ع للزيوت، وتحسب الأوزان الأقل من كيلوجرام بالتناسب. تُؤكد تكلفة الشحن والإجمالي النهائي مع خدمة العملاء عبر واتساب لجميع الدول قبل الدفع. لا يشمل الشحن الجمارك أو الضرائب أو رسوم الاستيراد.</p>
+        <p>الشحن إلى عُمان والسعودية والإمارات والبحرين وقطر والكويت يُحتسب مؤقتًا على أساس وزن تقديري قدره ٥٠٠ جرام لكل قطعة: ٧ ر.ع لكل كيلوجرام، أو ٩ ر.ع لكل كيلوجرام للطلب كاملًا إذا احتوى على زيت. تظهر تكلفة الشحن والإجمالي في ملخص الطلب. تُؤكد تكلفة الشحن للدول الأخرى مع خدمة العملاء عبر واتساب قبل الدفع. لا يشمل الشحن الجمارك أو الضرائب أو رسوم الاستيراد.</p>
         <ul>
           <li>مدة التوصيل التقديرية داخل سلطنة عُمان وجميع دول الخليج: من 3 إلى 7 أيام عمل من تأكيد الطلب، باستثناء العطلات الرسمية.</li>
         </ul>
@@ -1026,7 +1009,7 @@
         <summary>الشروط والأحكام — Terms &amp; Conditions</summary>
         <ol>
           <li>يعرض المتجر منتجات العناية بالشعر والبشرة واللبان. يظهر وصف كل منتج وسعره في بطاقته، والمنتجات التي تحمل علامة نفاد المخزون غير متاحة للطلب.</li>
-          <li>تُعرض الأسعار بالريال العُماني وبمقابل سعودي مقرب، وتشمل الضرائب الواجبة. تُضاف تكلفة الشحن فقط، وتُؤكد عملة السداد والمبلغ النهائي قبل موافقة العميل والدفع.</li>
+          <li>تُعرض الأسعار بالريال العُماني، وتشمل الضرائب الواجبة. تُضاف تكلفة الشحن فقط، وتُؤكد عملة السداد والمبلغ النهائي قبل موافقة العميل والدفع.</li>
           <li>اختيار المنتجات وإرسالها عبر واتساب هو طلب لتأكيد التوافر والتفاصيل. يُؤكد الطلب بعد الاتفاق مع العميل على المنتجات والكميات والسعر الكامل وطريقة الدفع والتوصيل.</li>
           <li>إذا ظهر خطأ في السعر أو التوافر قبل إتمام الطلب، يُبلغ العميل بالتصحيح وله قبول العرض المصحح أو إلغاء الطلب. لا تُعدل تفاصيل طلب مؤكد دون موافقته.</li>
           <li>تُراجع العبوة لمعرفة المكونات والكمية وتعليمات الاستخدام والتحذيرات. يمكن طلب هذه المعلومات من الدعم قبل الشراء، خصوصًا عند وجود حساسية. أوصاف العناية لا تضمن نتائج موحدة ولا تُعد إرشادات طبية.</li>
@@ -1063,35 +1046,16 @@
 
       <details id="payment-info" open>
         <summary>الدفع وأمان الموقع — Payments &amp; Security</summary>
-        <p>قبول Visa وMastercard قيد التفعيل بعد اعتماد بوابة الدفع. تُؤكد وسيلة الدفع المتاحة مع خدمة العملاء قبل إتمام الطلب.</p>
+        <p>بعد إرسال الطلب عبر واتساب، يراجع فريق المتجر تفاصيله وتكلفة الشحن مع العميل، ثم يرسل رابط الدفع عبر واتساب. يُؤكد المبلغ النهائي قبل الدفع.</p>
         <p>يستخدم <a href="https://luminor-ten.vercel.app/">موقع LUMINOR</a> اتصال HTTPS بشهادة SSL/TLS لحماية البيانات أثناء النقل، ويُعاد توجيه اتصالات HTTP تلقائيًا إلى HTTPS.</p>
       </details>
     </dialog>
   </main>
 
-  <div class="page" style="padding-top:0;padding-bottom:20px">
-    <label><input id="marketingConsent" type="checkbox"> أوافق اختياريًا على استقبال عروض LUMINOR عبر واتساب على رقم الطلب. يمكنني إلغاء الاشتراك في أي وقت، ولا يؤثر رفضي على الشراء.</label>
-    <p>بإرسال الطلب تطلب معالجة بياناته للتواصل وتنفيذه وفق <a href="#privacy-policy">سياسة الخصوصية</a> و<a href="#terms-policy">شروط الطلب</a>.</p>
-  </div>
-  <section class="page checkout-summary" id="checkout" aria-labelledby="checkout-title">
-    <h2 id="checkout-title">ملخص الطلب والشحن</h2>
-    <p class="customs-notice">تنبيه: تكلفة الشحن لا تشمل الرسوم الجمركية أو ضرائب الاستيراد أو أي رسوم استيراد أخرى.</p>
-    <label for="deliveryCountry">منطقة الشحن — دولة التوصيل</label>
-    <select id="deliveryCountry"><option value="">اختاري الدولة</option><option value="OM">عُمان</option><option value="SA">السعودية</option><option value="AE">الإمارات</option><option value="BH">البحرين</option><option value="QA">قطر</option><option value="KW">الكويت</option><option value="other">دولة أخرى</option></select>
-    <div id="otherDetails" hidden>
-      <label>الدولة <input id="otherCountry" maxlength="80" autocomplete="country-name"></label>
-      <label>الاسم <input id="customerName" maxlength="100" autocomplete="name"></label>
-      <label>رقم التواصل <input id="customerPhone" maxlength="40" autocomplete="tel"></label>
-      <label>عنوان التوصيل <input id="customerAddress" maxlength="200" autocomplete="street-address"></label>
-    </div>
-    <div id="shippingSummary" aria-live="polite">اختاري المنتجات ودولة التوصيل لعرض ملخص الطلب.</div>
-    <p>الدفع الإلكتروني قيد التجهيز. يُرجى إرسال الطلب عبر واتساب لتأكيد التوافر والشحن وطريقة الدفع.</p>
-    <p class="whatsapp-help">إذا لم يفتح واتساب، يمكنك التواصل مباشرة على <a href="https://api.whatsapp.com/send?phone=96898939222" dir="ltr">+968 9893 9222</a> وإرسال المنتجات المختارة.</p>
-  </section>
   <div class="order-bar">
     <div class="order-inner">
-      <a class="review-link" href="#checkout">مراجعة الطلب <span id="selectionCount">(0)</span></a>
-      <a id="whatsappBtn" href="#" class="order-btn">اطلب الآن عبر الواتساب</a>
+      <span class="review-link" aria-live="polite">المنتجات المختارة <span id="selectionCount">(0)</span></span>
+      <a id="checkoutBtn" href="checkout.html" class="order-btn">اطلب الآن</a>
     </div>
   </div>
 
@@ -1116,69 +1080,40 @@
       const bounds = storeDialog.getBoundingClientRect();
       if (event.target === storeDialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) storeDialog.close();
     });
-    // لتغيير رقم الواتساب: عدلي الرقم هنا بصيغة دولية بدون علامة + أو مسافات.
-    const whatsappNumber = "96898939222";
-
     const cards = document.querySelectorAll(".product-card");
     const categoryButtons = document.querySelectorAll(".category-button");
     const checkboxes = document.querySelectorAll('input[name="product"]');
-    const whatsappBtn = document.getElementById("whatsappBtn");
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const selectionKey = "luminor-selected-products";
 
     function getSelectedProducts() {
-      return Array.from(checkboxes)
-        .filter((checkbox) => checkbox.checked)
-        .map((checkbox) => checkbox.value);
+      return Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
     }
-
-    const country = document.getElementById("deliveryCountry");
-    const details = document.getElementById("otherDetails");
-    const fields = ["otherCountry", "customerName", "customerPhone", "customerAddress"];
-    const summary = document.getElementById("shippingSummary");
-    cards.forEach((card) => {
-      const note = document.createElement("span");
-      note.className = "product-shipping-note";
-      note.textContent = "الشحن لا يشمل الجمارك أو الضرائب أو رسوم الاستيراد.";
-      card.querySelector(".product-body").appendChild(note);
+    function updateSelection() {
+      const selected = getSelectedProducts();
+      let previous = [];
+      try { const saved = JSON.parse(sessionStorage.getItem(selectionKey) || "[]"); if (Array.isArray(saved)) previous = saved.filter(item => typeof item === "string").map(item => item.replace(/ \/ \d+ ر\.س$/, "")); } catch (_) {}
+      const retained = previous.filter(product => selected.includes(product));
+      selected.forEach(product => { if (!retained.includes(product)) retained.push(product); });
+      document.getElementById("selectionCount").textContent = `(${retained.length})`;
+      try { sessionStorage.setItem(selectionKey, JSON.stringify(retained)); } catch (_) {}
+    }
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(selectionKey) || "[]");
+      if (Array.isArray(saved)) {
+        const normalized = saved.filter(item => typeof item === "string").map(item => item.replace(/ \/ \d+ ر\.س$/, ""));
+        sessionStorage.setItem(selectionKey, JSON.stringify(normalized));
+        checkboxes.forEach(checkbox => { checkbox.checked = normalized.includes(checkbox.value); updateCardState(checkbox); });
+      }
+    } catch (_) {}
+    checkoutBtn.addEventListener("click", event => {
+      if (!getSelectedProducts().length) {
+        event.preventDefault();
+        alert("يرجى اختيار منتج واحد على الأقل");
+        return;
+      }
+      updateSelection();
     });
-    function shippingResult() {
-      return window.LuminorShipping.calculate(getSelectedProducts(), country.value, window.LUMINOR_SHIPPING);
-    }
-    function updateShipping() {
-      details.hidden = country.value !== "other";
-      const result = shippingResult();
-      summary.textContent = "";
-      result.lines.forEach((line) => { const p = document.createElement("p"); p.textContent = line; summary.appendChild(p); });
-      updateWhatsappLink();
-    }
-    country.addEventListener("change", updateShipping);
-    fields.forEach((id) => document.getElementById(id).addEventListener("input", updateWhatsappLink));
-
-    function buildOrderMessage(selectedProducts) {
-      return [
-        "طلب جديد من LUMINOR",
-        "المنتجات المختارة:",
-        ...selectedProducts.map((product) => `- ${product}`),
-        "",
-        ...shippingResult().lines.filter((line) => !selectedProducts.some((product) => line.startsWith(product))),
-        ...(country.value === "other" ? ["الدولة: " + document.getElementById("otherCountry").value, "الاسم: " + document.getElementById("customerName").value, "رقم التواصل: " + document.getElementById("customerPhone").value, "العنوان: " + document.getElementById("customerAddress").value] : country.value ? ["دولة التوصيل: " + country.options[country.selectedIndex].text] : []),
-        "أرغب بتأكيد الطلب والتوصيل.",
-        document.getElementById("marketingConsent").checked
-          ? "موافقة تسويقية اختيارية: أوافق على استقبال عروض LUMINOR عبر واتساب على رقم الطلب، ويمكنني إلغاء الاشتراك في أي وقت. تاريخ الموافقة: " + new Date().toISOString()
-          : "لا أوافق على استقبال الرسائل التسويقية."
-      ].join("\n");
-    }
-
-    function buildWhatsappUrl(selectedProducts) {
-      const message = buildOrderMessage(selectedProducts);
-      const encodedMessage = encodeURIComponent(message);
-      return `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodedMessage}`;
-    }
-
-    function updateWhatsappLink() {
-      const selectedProducts = getSelectedProducts();
-      document.getElementById("selectionCount").textContent = `(${selectedProducts.length})`;
-      whatsappBtn.href = selectedProducts.length ? buildWhatsappUrl(selectedProducts) : "#";
-    }
 
     function showCategory(category) {
       categoryButtons.forEach((button) => {
@@ -1203,7 +1138,7 @@
     checkboxes.forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         updateCardState(checkbox);
-        updateShipping();
+        updateSelection();
       });
     });
 
@@ -1217,40 +1152,16 @@
 
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
-          updateShipping();
+          updateSelection();
         }
       });
     });
 
-    document.getElementById("marketingConsent").addEventListener("change", updateWhatsappLink);
-    whatsappBtn.addEventListener("pointerdown", updateWhatsappLink);
-    whatsappBtn.addEventListener("touchstart", updateWhatsappLink);
-
-    whatsappBtn.addEventListener("click", function (event) {
-      const selectedProducts = getSelectedProducts();
-
-      if (!selectedProducts.length) {
-        event.preventDefault();
-        alert("يرجى اختيار منتج واحد على الأقل");
-        return;
-      }
-
-      if (!country.value) {
-        event.preventDefault();
-        document.getElementById("checkout").scrollIntoView({ behavior: "smooth", block: "start" });
-        country.focus({ preventScroll: true });
-        return;
-      }
-
-      if (country.value === "other" && fields.some((id) => !document.getElementById(id).value.trim())) {
-        event.preventDefault();
-        alert("يرجى إكمال الدولة والاسم ورقم التواصل والعنوان قبل إرسال طلب الشحن.");
-        return;
-      }
-      whatsappBtn.href = buildWhatsappUrl(selectedProducts);
-    });
-
-    updateShipping();
+    updateSelection();
+    if (location.hash) {
+      const policyLink = Array.from(document.querySelectorAll('a[href^="#"]')).find(link => link.hash === location.hash && storeDialog.contains(document.getElementById(link.hash.slice(1))));
+      if (policyLink) policyLink.click();
+    }
   </script>
 </body>
 </html>
