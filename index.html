@@ -541,6 +541,74 @@
 
     <section class="products" aria-label="منتجات LUMINOR">
       <!-- لتغيير صور المنتجات: ضعي الصور الجديدة داخل مجلد images ثم عدلي قيمة src لكل منتج. -->
+
+      <label class="product-card" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/growth-mix.jpeg" alt="خلطة النمو والتكثيف LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">خلطة النمو والتكثيف LUMINOR</h2>
+          <p class="product-desc">خلطة للعناية بالشعر تحتوي على الحنا.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">12.000 ر.ع</span>
+            <span class="price-pill">117 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="خلطة النمو والتكثيف LUMINOR - 12.000 ر.ع / 117 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="body">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/toner.jpeg" alt="تونر بخاخ LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">تونر بخاخ LUMINOR</h2>
+          <p class="product-desc">تونر بخاخ للعناية بالبشرة.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">2.000 ر.ع</span>
+            <span class="price-pill">20 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="تونر بخاخ LUMINOR - 2.000 ر.ع / 20 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/deep-mask.jpeg" alt="ماسك الترطيب العميق LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">ماسك الترطيب العميق LUMINOR</h2>
+          <p class="product-desc">ماسك ترطيب للشعر الناشف والمصبوغ، 500 مل.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">8.000 ر.ع</span>
+            <span class="price-pill">78 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="ماسك الترطيب العميق LUMINOR - 8.000 ر.ع / 78 ر.س">
+          </span>
+        </span>
+      </label>
+
+      <label class="product-card" data-category="hair">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <img class="product-image" src="images/hair-brush.png" alt="مشط LUMINOR">
+        <span class="product-body">
+          <h2 class="product-name">مشط LUMINOR</h2>
+          <p class="product-desc">مشط للعناية بالشعر.</p>
+          <span class="price-row" aria-label="السعر">
+            <span class="price-pill">3.500 ر.ع</span>
+            <span class="price-pill">34 ر.س</span>
+          </span>
+          <span class="select-row">
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="مشط LUMINOR - 3.500 ر.ع / 34 ر.س">
+          </span>
+        </span>
+      </label>
       <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
         <img class="product-image" src="images/sidr.png" alt="سدر LUMINOR">
@@ -566,21 +634,20 @@
           <h2 class="product-name">مشاط LUMINOR</h2>
           <p class="product-desc">خلطة عناية تقليدية للشعر بلمسة ناعمة وفاخرة.</p>
           <span class="price-row" aria-label="السعر">
-            <span class="price-pill">5.000 ر.ع</span>
-            <span class="price-pill">49 ر.س</span>
+            <span class="price-pill">6.000 ر.ع</span>
+            <span class="price-pill">59 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="مشاط LUMINOR - 5.000 ر.ع / 49 ر.س">
+            <input type="checkbox" name="product" value="مشاط LUMINOR - 6.000 ر.ع / 59 ر.س">
           </span>
         </span>
       </label>
 
-      <label class="product-card is-hidden is-sold-out" data-category="hair">
+      <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
         <span class="product-media">
           <img class="product-image" src="images/luminor_henna_mashat_style.png" alt="الحنا العماني LUMINOR">
-          <span class="sold-out-badge">SOLD OUT</span>
         </span>
         <span class="product-body">
           <h2 class="product-name">الحنا العماني LUMINOR</h2>
@@ -590,17 +657,16 @@
             <span class="price-pill">29 ر.س</span>
           </span>
           <span class="select-row">
-            <span>غير متوفر</span>
-            <input type="checkbox" name="product" value="الحنا العماني LUMINOR - 3.000 ر.ع / 29 ر.س" disabled>
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="الحنا العماني LUMINOR - 3.000 ر.ع / 29 ر.س">
           </span>
         </span>
       </label>
 
-      <label class="product-card is-hidden is-sold-out" data-category="hair">
+      <label class="product-card is-hidden" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
         <span class="product-media">
           <img class="product-image" src="images/luminor_herbal_henna_mix.png" alt="الحنا بالأعشاب LUMINOR">
-          <span class="sold-out-badge">SOLD OUT</span>
         </span>
         <span class="product-body">
           <h2 class="product-name">الحنا بالأعشاب LUMINOR</h2>
@@ -610,8 +676,8 @@
             <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
-            <span>غير متوفر</span>
-            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع / 78 ر.س" disabled>
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="الحنا بالأعشاب LUMINOR - 8.000 ر.ع / 78 ر.س">
           </span>
         </span>
       </label>
@@ -623,12 +689,12 @@
           <h2 class="product-name">زيت الشعر LUMINOR</h2>
           <p class="product-desc">زيت غني يساعد على ترطيب الشعر ومنحه لمعاناً صحياً.</p>
           <span class="price-row" aria-label="السعر">
-            <span class="price-pill">5.000 ر.ع</span>
-            <span class="price-pill">49 ر.س</span>
+            <span class="price-pill">8.000 ر.ع</span>
+            <span class="price-pill">78 ر.س</span>
           </span>
           <span class="select-row">
             <span>اختيار المنتج</span>
-            <input type="checkbox" name="product" value="زيت الشعر LUMINOR - 5.000 ر.ع / 49 ر.س">
+            <input type="checkbox" name="product" value="زيت الشعر LUMINOR - 8.000 ر.ع / 78 ر.س">
           </span>
         </span>
       </label>
@@ -667,11 +733,10 @@
         </span>
       </label>
 
-      <label class="product-card is-sold-out" data-category="body">
+      <label class="product-card" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
         <span class="product-media">
           <img class="product-image" src="images/luminor_yemeni_wars_soap.png" alt="الورس اليمني LUMINOR">
-          <span class="sold-out-badge">SOLD OUT</span>
         </span>
         <span class="product-body">
           <h2 class="product-name">الورس اليمني LUMINOR</h2>
@@ -681,17 +746,16 @@
             <span class="price-pill">68 ر.س</span>
           </span>
           <span class="select-row">
-            <span>غير متوفر</span>
-            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع / 68 ر.س" disabled>
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="الورس اليمني LUMINOR - 7.000 ر.ع / 68 ر.س">
           </span>
         </span>
       </label>
 
-      <label class="product-card is-sold-out" data-category="body">
+      <label class="product-card" data-category="body">
         <span class="selected-badge" aria-hidden="true">✓</span>
         <span class="product-media">
           <img class="product-image" src="images/body-scrub.png" alt="سنفرة الجسم LUMINOR">
-          <span class="sold-out-badge">SOLD OUT</span>
         </span>
         <span class="product-body">
           <h2 class="product-name">سنفرة الجسم LUMINOR</h2>
@@ -701,8 +765,8 @@
             <span class="price-pill">83 ر.س</span>
           </span>
           <span class="select-row">
-            <span>غير متوفر</span>
-            <input type="checkbox" name="product" value="سنفرة الجسم LUMINOR - 8.500 ر.ع / 83 ر.س" disabled>
+            <span>اختيار المنتج</span>
+            <input type="checkbox" name="product" value="سنفرة الجسم LUMINOR - 8.500 ر.ع / 83 ر.س">
           </span>
         </span>
       </label>

@@ -1,11 +1,27 @@
 // أدخل وزن الشحن بالجرام والتصنيف "oil" أو "regular" لكل منتج.
 // يشمل الوزن التغليف عند اعتماده؛ لا يُفترض الوزن الصافي للشحن.
 window.LUMINOR_SHIPPING = {
+  "خلطة النمو والتكثيف LUMINOR - 12.000 ر.ع / 117 ر.س": {
+    "weightGrams": null,
+    "shippingClass": "regular"
+  },
+  "تونر بخاخ LUMINOR - 2.000 ر.ع / 20 ر.س": {
+    "weightGrams": null,
+    "shippingClass": "regular"
+  },
+  "ماسك الترطيب العميق LUMINOR - 8.000 ر.ع / 78 ر.س": {
+    "weightGrams": null,
+    "shippingClass": "regular"
+  },
+  "مشط LUMINOR - 3.500 ر.ع / 34 ر.س": {
+    "weightGrams": null,
+    "shippingClass": "regular"
+  },
   "سدر LUMINOR - 4.500 ر.ع / 44 ر.س": {
     "weightGrams": 1000,
     "shippingClass": "regular"
   },
-  "مشاط LUMINOR - 5.000 ر.ع / 49 ر.س": {
+  "مشاط LUMINOR - 6.000 ر.ع / 59 ر.س": {
     "weightGrams": 1000,
     "shippingClass": "regular"
   },
@@ -17,7 +33,7 @@ window.LUMINOR_SHIPPING = {
     "weightGrams": 1000,
     "shippingClass": "regular"
   },
-  "زيت الشعر LUMINOR - 5.000 ر.ع / 49 ر.س": {
+  "زيت الشعر LUMINOR - 8.000 ر.ع / 78 ر.س": {
     "weightGrams": null,
     "shippingClass": "oil"
   },
