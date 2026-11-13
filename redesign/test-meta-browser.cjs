@@ -9,8 +9,8 @@ function setup(consent,pathname='/',search=''){
   const document={currentScript:{dataset:{pixelId:'999999999999999'}},head:{appendChild(x){scripts.push(x.src)}},body:{appendChild(x){nodes.push(x)}},createElement:element,querySelector(){return null},querySelectorAll(){return []}};
   const location={pathname,search,hash:'',reload(){this.reloaded=true}};
   const localStorage={getItem:k=>storage.get(k)||null,setItem:(k,v)=>storage.set(k,v)};
-  const window={addEventListener(){},dispatchEvent(){}};
-  vm.runInNewContext(script,{window,document,location,localStorage,Event:function(type){this.type=type}});
+  const window={addEventListener(){},dispatchEvent(){},history:{state:null,replaceState(_state,_title,url){const parsed=new URL(url,'http://example.test');location.pathname=parsed.pathname;location.search=parsed.search;location.hash=parsed.hash;}}};
+  vm.runInNewContext(script,{window,document,location,localStorage,URLSearchParams,Event:function(type){this.type=type}});
   return {window,location,localStorage,scripts,banner:nodes[0]};
 }
 const calls=env=>Array.from(env.window.fbq.queue).filter(c=>c[0]==='trackSingle');
@@ -38,6 +38,13 @@ test('checkout and arbitrary query pages do not load Pixel; confirmed purchase r
   assert.equal(e.window.LuminorMarketing.purchase(details,id),false);
   e.location.search='';assert.equal(e.window.LuminorMarketing.purchase(details,id),true);
   assert.equal(calls(e)[0][2],'Purchase');assert.equal(calls(e)[0][4].eventID,id);
+});
+test('consented campaign visits count after removing campaign parameters',()=>{
+  const e=setup('accepted','/shop','?utm_source=facebook&fbclid=example');
+  assert.equal(e.location.search,'');
+  assert.deepEqual(calls(e).map(c=>c[2]),['PageView']);
+  e.location.hash='#hair';e.window.LuminorMarketing.track('AddToCart',{content_ids:['1'],value:25,currency:'OMR'});
+  assert.equal(calls(e)[1][2],'AddToCart');
 });
 test('a local fake endpoint receives consented page and cart events without contacting Meta',async()=>{
   const http=require('node:http');

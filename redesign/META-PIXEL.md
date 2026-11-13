@@ -18,9 +18,11 @@ delivery. A durable server-side Conversions API integration would be needed for
 retries and delivery acknowledgement, with separate consent handling.
 
 To avoid exposing order data, ordinary tracking is skipped on checkout paths
-and on URLs with a query string or fragment. The return page strips the query
+and on URLs with unknown query strings or fragments. Recognized campaign query
+parameters are removed from the address after consent before the Pixel loads.
+The return page strips the query
 from the browser URL before a consented, paid Purchase is emitted. This means
-campaign landing URLs with query parameters do not generate PageView until a
+URLs containing other query parameters do not generate PageView until a
 subsequent clean navigation. Browser Pixel still shares technical identifiers
 and network metadata with Meta after consent.
 

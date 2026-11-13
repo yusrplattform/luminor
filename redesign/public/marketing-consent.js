@@ -6,9 +6,18 @@
   const PIXEL = /^\d+$/.test(configuredPixel) ? configuredPixel : '';
   let choice = null, initialized = false, lastPage = null;
   try { choice = localStorage.getItem(KEY); } catch (_) {}
+  function sanitizeCampaignUrl() {
+    if (!hasConsent() || !location.search || /(^|\/)checkout(?:\.html|\/|$)/.test(location.pathname)) return;
+    const params = new URLSearchParams(location.search);
+    const known = new Set(['fbclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content']);
+    if ([...params.keys()].every(key => known.has(key))) {
+      window.history.replaceState(window.history.state, '', location.pathname + location.hash);
+    }
+  }
   function safePage() {
     const path = location.pathname;
-    return !location.search && !location.hash && !/(^|\/)checkout(?:\.html|\/|$)/.test(path);
+    const safeHash = !location.hash || (path === '/shop' && ['#bundles','#hair','#body','#frankincense'].includes(location.hash));
+    return !location.search && safeHash && !/(^|\/)checkout(?:\.html|\/|$)/.test(path);
   }
   function hasConsent() { try { return choice === 'accepted' && localStorage.getItem(KEY) === 'accepted'; } catch (_) { return false; } }
   function allowed() { return !!PIXEL && hasConsent() && safePage(); }
@@ -41,6 +50,7 @@
     return true;
   }
   function page() {
+    sanitizeCampaignUrl();
     if (!allowed()) { lastPage = null; return; }
     const path = location.pathname;
     if (lastPage === path) return;
