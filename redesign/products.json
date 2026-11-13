@@ -5,7 +5,7 @@
     "name": "بكج العناية LUMINOR",
     "description": "أربع لمسات للعناية بكِ: خلطة التكثيف والنمو التي تحتوي على الحنا، وزيت LUMINOR، وتونر، وماسك الترطيب العميق.",
     "price": "25.000 ر.ع",
-    "image": "images/growth-mix.jpeg"
+    "image": "images/growth-mix.webp"
   },
   {
     "id": "2",
@@ -13,7 +13,7 @@
     "name": "خلطة النمو والتكثيف LUMINOR",
     "description": "لحظات عناية مستوحاة من جمال الحنا، تمنح روتين شعرك لمسة تقليدية تحبينها. تحتوي على الحنا، 500 مل؛ استفسري عن تأثيرها على اللون وطريقة استخدامها قبل الشراء.",
     "price": "12.000 ر.ع",
-    "image": "images/growth-mix.jpeg"
+    "image": "images/growth-mix.webp"
   },
   {
     "id": "3",
@@ -21,7 +21,7 @@
     "name": "تونر بخاخ LUMINOR",
     "description": "أضيفي لمسة لطيفة إلى روتين بشرتك مع تونر بخاخ يجعل لحظات العناية بنفسك أسهل وأجمل.",
     "price": "2.000 ر.ع",
-    "image": "images/toner.jpeg"
+    "image": "images/toner.webp"
   },
   {
     "id": "4",
@@ -29,7 +29,7 @@
     "name": "ماسك الترطيب العميق LUMINOR",
     "description": "امنحي شعرك الناشف أو المصبوغ وقتًا يستحقه من العناية مع ماسك الترطيب العميق، بحجم 500 مل. للاستفسار عن الفرق بينه وبين ماسك الشعر، تواصلي معنا.",
     "price": "8.000 ر.ع",
-    "image": "images/deep-mask.jpeg"
+    "image": "images/deep-mask.webp"
   },
   {
     "id": "5",
@@ -37,7 +37,7 @@
     "name": "مشط LUMINOR",
     "description": "اجعلي تمشيط شعرك جزءًا من لحظات العناية اليومية مع مشط LUMINOR، بتصميم مفتوح ومريح للاستخدام.",
     "price": "3.500 ر.ع",
-    "image": "images/hair-brush.png"
+    "image": "images/hair-brush.webp"
   },
   {
     "id": "6",
@@ -45,7 +45,7 @@
     "name": "سدر LUMINOR",
     "description": "استمتعي بلحظة عناية مستوحاة من السدر، تمنح روتين شعرك إحساسًا بالانتعاش والخفة.",
     "price": "4.500 ر.ع",
-    "image": "images/sidr.png"
+    "image": "images/sidr.webp"
   },
   {
     "id": "7",
@@ -53,7 +53,7 @@
     "name": "مشاط LUMINOR",
     "description": "دلّلي شعرك بخلطة المشاط، ولمسة من تقاليد العناية التي تجعل روتينك أقرب إليك.",
     "price": "6.000 ر.ع",
-    "image": "images/mishat.png"
+    "image": "images/mishat.webp"
   },
   {
     "id": "8",
@@ -61,7 +61,7 @@
     "name": "الحنا العماني LUMINOR",
     "description": "اكتشفي جمال الحنا العماني في روتينك، لعناية بالشعر ولمسة لون مستوحاة من التقاليد.",
     "price": "3.000 ر.ع",
-    "image": "images/luminor_henna_mashat_style.png"
+    "image": "images/luminor_henna_mashat_style.webp"
   },
   {
     "id": "9",
@@ -69,7 +69,7 @@
     "name": "الحنا بالأعشاب LUMINOR",
     "description": "اجمعي بين الحنا والأعشاب في لحظة عناية تمنح شعرك لمسة مستوحاة من الطبيعة والتقاليد.",
     "price": "8.000 ر.ع",
-    "image": "images/luminor_herbal_henna_mix.png"
+    "image": "images/luminor_herbal_henna_mix.webp"
   },
   {
     "id": "10",
@@ -77,7 +77,7 @@
     "name": "زيت الشعر LUMINOR",
     "description": "خصّصي لشعرك لحظة عناية مع زيت يساعد على ترطيبه ويمنحه لمسة من اللمعان.",
     "price": "8.000 ر.ع",
-    "image": "images/hair-oil.png"
+    "image": "images/hair-oil.webp"
   },
   {
     "id": "11",
@@ -85,7 +85,7 @@
     "name": "ماسك الشعر LUMINOR",
     "description": "امنحي شعرك استراحة من مشاغل اليوم مع ماسك عناية يمنحه إحساسًا بالنعومة.",
     "price": "7.000 ر.ع",
-    "image": "images/hair-mask.png"
+    "image": "images/hair-mask.webp"
   },
   {
     "id": "12",
@@ -93,7 +93,7 @@
     "name": "دالفور LUMINOR",
     "description": "اجعلي العناية ببشرتك لحظة خاصة مع كريم دالفور. استفسري عن مكوناته وطريقة استخدامه ومدى ملاءمته لبشرتك.",
     "price": "8.000 ر.ع",
-    "image": "images/dalfur.png"
+    "image": "images/dalfur.webp"
   },
   {
     "id": "13",
@@ -101,7 +101,7 @@
     "name": "الورس اليمني LUMINOR",
     "description": "أضيفي لمسة من العناية التقليدية إلى يومك مع الورس اليمني، لإحساس بالنظافة والنعومة.",
     "price": "7.000 ر.ع",
-    "image": "images/luminor_yemeni_wars_soap.png"
+    "image": "images/luminor_yemeni_wars_soap.webp"
   },
   {
     "id": "14",
@@ -109,7 +109,7 @@
     "name": "سنفرة الجسم LUMINOR",
     "description": "دلّلي جسمك بلحظة عناية مع سنفرة ناعمة تترك إحساسًا بالانتعاش وملمسًا ناعمًا.",
     "price": "8.500 ر.ع",
-    "image": "images/body-scrub.png"
+    "image": "images/body-scrub.webp"
   },
   {
     "id": "15",
@@ -117,7 +117,7 @@
     "name": "صابونية الجسم LUMINOR",
     "description": "ابدئي أو اختتمي يومك بلحظة لنفسك مع صابونية تنظف البشرة بلطف وتتركها ناعمة.",
     "price": "8.000 ر.ع",
-    "image": "images/body-soap.png"
+    "image": "images/body-soap.webp"
   },
   {
     "id": "16",
@@ -125,7 +125,7 @@
     "name": "كريم التفتيح LUMINOR",
     "description": "امنحي بشرتك لحظة اهتمام مع كريم عناية يساعد على إظهارها بإشراقة ونعومة.",
     "price": "10.000 ر.ع",
-    "image": "images/brightening-cream.png"
+    "image": "images/brightening-cream.webp"
   },
   {
     "id": "17",
@@ -133,7 +133,7 @@
     "name": "لبان LUMINOR 100 جرام",
     "description": "استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.",
     "price": "2.400 ر.ع",
-    "image": "images/frankincense.png"
+    "image": "images/frankincense.webp"
   },
   {
     "id": "18",
@@ -141,7 +141,7 @@
     "name": "لبان LUMINOR 250 جرام",
     "description": "استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.",
     "price": "6.000 ر.ع",
-    "image": "images/frankincense.png"
+    "image": "images/frankincense.webp"
   },
   {
     "id": "19",
@@ -149,7 +149,7 @@
     "name": "لبان LUMINOR 500 جرام",
     "description": "استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.",
     "price": "12.000 ر.ع",
-    "image": "images/frankincense.png"
+    "image": "images/frankincense.webp"
   },
   {
     "id": "20",
@@ -157,6 +157,6 @@
     "name": "لبان LUMINOR 1 كيلو",
     "description": "استمتعي بلمسة من التقاليد العُمانية مع لبان طبيعي للنقع والشرب، واختاري الحجم المناسب لك.",
     "price": "24.000 ر.ع",
-    "image": "images/frankincense.png"
+    "image": "images/frankincense.webp"
   }
 ]
