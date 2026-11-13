@@ -4,7 +4,7 @@ const vm=require('node:vm');
 const fs=require('node:fs');
 const script=fs.readFileSync('public/marketing-consent.js','utf8');
 function setup(consent,pathname='/',search=''){
-  const storage=new Map(consent?[['luminor-marketing-consent-v1',consent]]:[]), scripts=[],nodes=[];
+  const storage=new Map(consent?[['luminor-marketing-consent-v2',consent]]:[]), scripts=[],nodes=[];
   const element=tag=>({tag,dataset:{},children:[],addEventListener(type,fn){this[type]=fn},setAttribute(){},append(...x){this.children.push(...x)},appendChild(x){this.children.push(x)},replaceChildren(){this.children=[]}});
   const document={currentScript:{dataset:{pixelId:'999999999999999'}},head:{appendChild(x){scripts.push(x.src)}},body:{appendChild(x){nodes.push(x)}},createElement:element,querySelector(){return null},querySelectorAll(){return []}};
   const location={pathname,search,hash:'',reload(){this.reloaded=true}};
@@ -17,9 +17,14 @@ const calls=env=>Array.from(env.window.fbq.queue).filter(c=>c[0]==='trackSingle'
 test('no script or event without consent, rejection and revocation',()=>{
   const e=setup();e.window.LuminorMarketing.track('AddToCart',{content_ids:['1'],value:25,currency:'OMR'});assert.equal(e.scripts.length,0);
   e.banner.children[2].click();assert.equal(e.scripts.length,0);
-  e.banner.children[1].click();assert.equal(e.scripts.length,1);
+  e.banner.children[1].click();assert.equal(e.scripts.length,2);
+  assert.equal(e.scripts.filter(src=>src==='https://www.googletagmanager.com/gtm.js?id=GTM-PRDPLZK8').length,1);
   e.banner.children[2].click();assert.equal(e.location.reloaded,true);
   const count=calls(e).length;e.window.LuminorMarketing.track('AddToCart',{content_ids:['1'],value:25,currency:'OMR'});assert.equal(calls(e).length,count);
+});
+test('previous Meta-only consent does not authorize Google',()=>{
+  const e=setup();e.localStorage.setItem('luminor-marketing-consent-v1','accepted');
+  e.window.LuminorMarketing.page();assert.equal(e.scripts.length,0);
 });
 test('routes are counted once per navigation and events carry only approved fields',()=>{
   const e=setup('accepted','/products/1');
@@ -45,6 +50,12 @@ test('consented campaign visits count after removing campaign parameters',()=>{
   assert.deepEqual(calls(e).map(c=>c[2]),['PageView']);
   e.location.hash='#hair';e.window.LuminorMarketing.track('AddToCart',{content_ids:['1'],value:25,currency:'OMR'});
   assert.equal(calls(e)[1][2],'AddToCart');
+});
+test('Google click IDs survive while other campaign details are removed',()=>{
+  const e=setup('accepted','/shop','?gclid=test_click_id&utm_source=google');
+  assert.equal(e.location.search,'?gclid=test_click_id');
+  assert.equal(e.scripts.filter(src=>src.includes('GTM-PRDPLZK8')).length,1);
+  assert.equal(e.scripts.filter(src=>src.includes('fbevents')).length,0);
 });
 test('a local fake endpoint receives consented page and cart events without contacting Meta',async()=>{
   const http=require('node:http');

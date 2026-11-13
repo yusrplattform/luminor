@@ -6,7 +6,7 @@ Pixel ID in a separate preview build if real Meta Test Events are required. Do
 not put an access token in `NEXT_PUBLIC_*` or browser code. Changing a public
 variable requires a new build.
 
-Consent is stored in `luminor-marketing-consent-v1`; rejection and no choice
+Consent is stored in `luminor-marketing-consent-v2`; rejection and no choice
 both prevent loading the Meta SDK. Purchase requires the existing server-side
 OMPAY reconciliation to report a paid order, plus marketing consent. Before
 enabling Purchase tracking, apply `lib/meta-purchase.sql` to the same database

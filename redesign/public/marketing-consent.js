@@ -1,17 +1,24 @@
 (function () {
   'use strict';
   if (window.LuminorMarketing) return;
-  const KEY = 'luminor-marketing-consent-v1';
+  // A new consent choice is required because Google is an additional recipient.
+  const KEY = 'luminor-marketing-consent-v2';
+  const GOOGLE_TAG = 'GTM-PRDPLZK8';
   const configuredPixel = document.currentScript?.dataset.pixelId || '1754919566679769';
   const PIXEL = /^\d+$/.test(configuredPixel) ? configuredPixel : '';
-  let choice = null, initialized = false, lastPage = null;
+  let choice = null, initialized = false, googleInitialized = false, lastPage = null;
   try { choice = localStorage.getItem(KEY); } catch (_) {}
   function sanitizeCampaignUrl() {
     if (!hasConsent() || !location.search || /(^|\/)checkout(?:\.html|\/|$)/.test(location.pathname)) return;
     const params = new URLSearchParams(location.search);
-    const known = new Set(['fbclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content']);
+    const known = new Set(['fbclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid']);
     if ([...params.keys()].every(key => known.has(key))) {
-      window.history.replaceState(window.history.state, '', location.pathname + location.hash);
+      const googleClicks = new URLSearchParams();
+      for (const key of ['gclid','gbraid','wbraid']) for (const value of params.getAll(key)) {
+        if (/^[a-zA-Z0-9._~-]{1,512}$/.test(value)) googleClicks.append(key, value);
+      }
+      const search = googleClicks.toString();
+      window.history.replaceState(window.history.state, '', location.pathname + (search ? '?' + search : '') + location.hash);
     }
   }
   function safePage() {
@@ -21,6 +28,21 @@
   }
   function hasConsent() { try { return choice === 'accepted' && localStorage.getItem(KEY) === 'accepted'; } catch (_) { return false; } }
   function allowed() { return !!PIXEL && hasConsent() && safePage(); }
+  function loadGoogle() {
+    const safeHash = !location.hash || (location.pathname === '/shop' && ['#bundles','#hair','#body','#frankincense'].includes(location.hash));
+    const params = new URLSearchParams(location.search);
+    const safeQuery = [...params.entries()].every(([key,value]) => ['gclid','gbraid','wbraid'].includes(key) && /^[a-zA-Z0-9._~-]{1,512}$/.test(value));
+    if (googleInitialized || !hasConsent() || !safeHash || !safeQuery || /(^|\/)checkout(?:\.html|\/|$)/.test(location.pathname)) return;
+    googleInitialized = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied'});
+    window.gtag('consent', 'update', {ad_storage:'granted'});
+    window.gtag('js', new Date());
+    const tag = document.createElement('script'); tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + GOOGLE_TAG;
+    document.head.appendChild(tag);
+  }
   function load(purchasePage = false) {
     if ((!allowed() && !purchasePage) || !PIXEL || !hasConsent() || initialized) return;
     initialized = true;
@@ -51,6 +73,7 @@
   }
   function page() {
     sanitizeCampaignUrl();
+    loadGoogle();
     if (!allowed()) { lastPage = null; return; }
     const path = location.pathname;
     if (lastPage === path) return;
@@ -65,11 +88,11 @@
     updateSettings();
     window.dispatchEvent(new Event('luminor-marketing-consent-change'));
     if (value === 'accepted' && previous !== 'accepted') { lastPage = null; page(); }
-    else if (initialized) location.reload();
+    else if (value !== 'accepted' && (initialized || googleInitialized)) location.reload();
   }
   function button(text, fn) { const b = document.createElement('button'); b.type = 'button'; b.textContent = text; b.addEventListener('click', fn); return b; }
   const banner = document.createElement('aside'); banner.className = 'marketing-consent'; banner.setAttribute('aria-label', 'اختيار التتبع التسويقي'); banner.hidden = choice === 'accepted' || choice === 'rejected';
-  const text = document.createElement('p'); text.textContent = 'نستخدم Meta Pixel بموافقتك فقط لقياس التفاعل مع المتجر وتحسين الإعلانات. يمكنك الرفض أو تغيير اختيارك لاحقاً من الخصوصية. لا يؤثر اختيارك على الطلب.';
+  const text = document.createElement('p'); text.textContent = 'نستخدم Meta Pixel ووسم Google بموافقتك فقط لقياس التفاعل مع المتجر وتحسين الإعلانات. يمكنك الرفض أو تغيير اختيارك لاحقاً من الخصوصية. لا يؤثر اختيارك على الطلب.';
   banner.append(text, button('قبول التتبع التسويقي', () => choose('accepted')), button('رفض التتبع التسويقي', () => choose('rejected')));
   const policy = document.createElement('a'); policy.href = location.pathname.endsWith('.html') || document.querySelector('#privacy-policy') ? 'index.html#privacy-policy' : '/privacy'; policy.textContent = 'الخصوصية'; banner.appendChild(policy);
   policy.addEventListener('click', event => {
