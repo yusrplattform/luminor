@@ -18,7 +18,7 @@ export function createOmpayClient({key, secret, environment = 'sandbox', fetchIm
       if (redirect.protocol !== 'https:') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_SCHEME'; throw error; }
       if (redirect.origin !== origin) { const error=new Error('Invalid checkout response'); error.code='GATEWAY_ORIGIN'; throw error; }
       if (typeof data.transaction_id !== 'string') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_ID'; throw error; }
-      if (data.status !== 'PROCESSING') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_STATUS'; throw error; }
+      if (!['PENDING','PROCESSING'].includes(data.status)) { const error=new Error('Invalid checkout response'); error.code='GATEWAY_STATUS'; throw error; }
       return {transactionId: data.transaction_id, redirectUrl: redirect.toString()};
     },
     async inquire(transactionId, reference) {
