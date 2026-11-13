@@ -1,16 +1,19 @@
 (function () {
   'use strict';
   if (window.LuminorMarketing) return;
-  const KEY = 'luminor-marketing-consent-v1', PIXEL = '1754919566679769';
+  const KEY = 'luminor-marketing-consent-v1';
+  const configuredPixel = document.currentScript?.dataset.pixelId || '1754919566679769';
+  const PIXEL = /^\d+$/.test(configuredPixel) ? configuredPixel : '';
   let choice = null, initialized = false, lastPage = null;
   try { choice = localStorage.getItem(KEY); } catch (_) {}
   function safePage() {
     const path = location.pathname;
     return !location.search && !location.hash && !/(^|\/)checkout(?:\.html|\/|$)/.test(path);
   }
-  function allowed() { return choice === 'accepted' && safePage(); }
-  function load() {
-    if (!allowed() || initialized) return;
+  function hasConsent() { try { return choice === 'accepted' && localStorage.getItem(KEY) === 'accepted'; } catch (_) { return false; } }
+  function allowed() { return !!PIXEL && hasConsent() && safePage(); }
+  function load(purchasePage = false) {
+    if ((!allowed() && !purchasePage) || !PIXEL || !hasConsent() || initialized) return;
     initialized = true;
     const fbq = window.fbq = function () { fbq.callMethod ? fbq.callMethod.apply(fbq, arguments) : fbq.queue.push(arguments); };
     if (!window._fbq) window._fbq = fbq;
@@ -20,23 +23,38 @@
     const tag = document.createElement('script'); tag.async = true; tag.src = 'https://connect.facebook.net/en_US/fbevents.js';
     document.head.appendChild(tag);
   }
-  function track(name) {
+  function cleanDetails(details) {
+    if (!details || !Array.isArray(details.content_ids) || !details.content_ids.length || !details.content_ids.every(id => typeof id === 'string' && /^\d+$/.test(id)) || !Number.isFinite(details.value) || details.value < 0 || details.currency !== 'OMR') return null;
+    return {content_ids: details.content_ids, content_type: 'product', value: details.value, currency: 'OMR'};
+  }
+  function track(name, details) {
     if (!allowed() || !['PageView','ViewContent','AddToCart','InitiateCheckout'].includes(name)) return;
-    load(); window.fbq('trackSingle', PIXEL, name);
+    const clean = details && cleanDetails(details);
+    if (details && !clean) return;
+    load(); window.fbq('trackSingle', PIXEL, name, clean || {});
+  }
+  function purchase(details, eventID) {
+    const clean = cleanDetails(details);
+    if (!PIXEL || !hasConsent() || location.pathname !== '/checkout/return' || location.search || location.hash || !clean || !/^[a-f0-9]{64}$/.test(eventID)) return false;
+    load(true);
+    window.fbq('trackSingle', PIXEL, 'Purchase', clean, {eventID});
+    return true;
   }
   function page() {
-    if (!allowed()) return;
+    if (!allowed()) { lastPage = null; return; }
     const path = location.pathname;
     if (lastPage === path) return;
     lastPage = path; track('PageView');
     if (/\/products\/[^/]+\/?$/.test(path)) track('ViewContent');
   }
   function choose(value) {
+    const previous = choice;
     try { localStorage.setItem(KEY, value); } catch (_) { value = 'rejected'; }
     choice = value;
     if (banner) banner.hidden = true;
     updateSettings();
-    if (value === 'accepted') { lastPage = null; page(); }
+    window.dispatchEvent(new Event('luminor-marketing-consent-change'));
+    if (value === 'accepted' && previous !== 'accepted') { lastPage = null; page(); }
     else if (initialized) location.reload();
   }
   function button(text, fn) { const b = document.createElement('button'); b.type = 'button'; b.textContent = text; b.addEventListener('click', fn); return b; }
@@ -57,7 +75,8 @@
       node.append(status, button('قبول التتبع التسويقي', () => choose('accepted')), button('رفض التتبع التسويقي وسحب الموافقة', () => choose('rejected')));
     });
   }
-  window.LuminorMarketing = { track, page, updateSettings };
+  window.LuminorMarketing = { track, page, updateSettings, purchase, hasConsent };
+  window.dispatchEvent(new Event('luminor-marketing-ready'));
   window.addEventListener('storage', event => { if (event.key === KEY) location.reload(); });
   updateSettings(); page();
 })();

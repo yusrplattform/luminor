@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import { quoteCart } from '../lib/quote.mjs';
 
 export default function AddToCart({ id, image, name, detail = false }) {
   const [message, setMessage] = useState('');
@@ -13,7 +14,8 @@ export default function AddToCart({ id, image, name, detail = false }) {
       cart[id] = (Number(cart[id]) || 0) + 1;
       localStorage.setItem('luminor-cart', JSON.stringify(cart));
       window.dispatchEvent(new Event('luminor-cart-change'));
-      window.LuminorMarketing?.track('AddToCart');
+      const item = quoteCart({[id]: 1}, 'OM').items[0];
+      window.LuminorMarketing?.track('AddToCart', {content_ids:[id], value:item.priceBaisa/1000, currency:'OMR'});
       setMessage('تمت الإضافة إلى السلة');
     } catch {
       setMessage('تعذرت الإضافة، يرجى المحاولة مجددًا');

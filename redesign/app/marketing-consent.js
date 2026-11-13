@@ -6,7 +6,7 @@ export default function MarketingConsent(){
   useEffect(()=>{
     if(window.LuminorMarketing){window.LuminorMarketing.updateSettings();window.LuminorMarketing.page();return;}
     let script=document.getElementById('luminor-marketing-script');
-    if(!script){script=document.createElement('script');script.id='luminor-marketing-script';script.src='/marketing-consent.js';document.body.appendChild(script);}
+    if(!script){script=document.createElement('script');script.id='luminor-marketing-script';script.dataset.pixelId=process.env.NEXT_PUBLIC_META_PIXEL_ID||'1754919566679769';script.src='/marketing-consent.js';document.body.appendChild(script);}
     const refresh=()=>{window.LuminorMarketing?.updateSettings();window.LuminorMarketing?.page();};
     script.addEventListener('load',refresh);
     return ()=>script.removeEventListener('load',refresh);
