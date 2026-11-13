@@ -3,7 +3,7 @@
   if (window.LuminorMarketing) return;
   // A new consent choice is required because Google is an additional recipient.
   const KEY = 'luminor-marketing-consent-v2';
-  const GOOGLE_TAG = 'GTM-PRDPLZK8';
+  const GOOGLE_TAG = 'GTM-PHLRKZ85';
   const configuredPixel = document.currentScript?.dataset.pixelId || '1754919566679769';
   const PIXEL = /^\d+$/.test(configuredPixel) ? configuredPixel : '';
   let choice = null, initialized = false, googleInitialized = false, lastPage = null;

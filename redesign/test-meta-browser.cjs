@@ -18,7 +18,7 @@ test('no script or event without consent, rejection and revocation',()=>{
   const e=setup();e.window.LuminorMarketing.track('AddToCart',{content_ids:['1'],value:25,currency:'OMR'});assert.equal(e.scripts.length,0);
   e.banner.children[2].click();assert.equal(e.scripts.length,0);
   e.banner.children[1].click();assert.equal(e.scripts.length,2);
-  assert.equal(e.scripts.filter(src=>src==='https://www.googletagmanager.com/gtm.js?id=GTM-PRDPLZK8').length,1);
+  assert.equal(e.scripts.filter(src=>src==='https://www.googletagmanager.com/gtm.js?id=GTM-PHLRKZ85').length,1);
   e.banner.children[2].click();assert.equal(e.location.reloaded,true);
   const count=calls(e).length;e.window.LuminorMarketing.track('AddToCart',{content_ids:['1'],value:25,currency:'OMR'});assert.equal(calls(e).length,count);
 });
@@ -63,7 +63,7 @@ test('consented campaign visits count after removing campaign parameters',()=>{
 test('Google click IDs survive while other campaign details are removed',()=>{
   const e=setup('accepted','/shop','?gclid=test_click_id&utm_source=google');
   assert.equal(e.location.search,'?gclid=test_click_id');
-  assert.equal(e.scripts.filter(src=>src.includes('GTM-PRDPLZK8')).length,1);
+  assert.equal(e.scripts.filter(src=>src.includes('GTM-PHLRKZ85')).length,1);
   assert.equal(e.scripts.filter(src=>src.includes('fbevents')).length,0);
 });
 test('Tag Assistant debug parameter loads Google only after consent',()=>{
@@ -71,7 +71,7 @@ test('Tag Assistant debug parameter loads Google only after consent',()=>{
   assert.equal(e.scripts.length,0);
   e.banner.children[1].click();
   assert.equal(e.location.search,'?_dbg=1');
-  assert.equal(e.scripts.filter(src=>src.includes('GTM-PRDPLZK8')).length,1);
+  assert.equal(e.scripts.filter(src=>src.includes('GTM-PHLRKZ85')).length,1);
   assert.equal(e.scripts.filter(src=>src.includes('fbevents')).length,0);
 });
 test('Tag Assistant gtm_debug parameter loads Google only after consent',()=>{
@@ -79,7 +79,7 @@ test('Tag Assistant gtm_debug parameter loads Google only after consent',()=>{
   assert.equal(e.scripts.length,0);
   e.banner.children[1].click();
   assert.equal(e.location.search,'?gtm_debug=1794591155275');
-  assert.equal(e.scripts.filter(src=>src.includes('GTM-PRDPLZK8')).length,1);
+  assert.equal(e.scripts.filter(src=>src.includes('GTM-PHLRKZ85')).length,1);
 });
 test('a local fake endpoint receives consented page and cart events without contacting Meta',async()=>{
   const http=require('node:http');
