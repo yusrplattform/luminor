@@ -11,10 +11,10 @@
   function sanitizeCampaignUrl() {
     if (!hasConsent() || !location.search || /(^|\/)checkout(?:\.html|\/|$)/.test(location.pathname)) return;
     const params = new URLSearchParams(location.search);
-    const known = new Set(['fbclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','_dbg']);
+    const known = new Set(['fbclid','utm_source','utm_medium','utm_campaign','utm_term','utm_content','gclid','gbraid','wbraid','_dbg','gtm_debug']);
     if ([...params.keys()].every(key => known.has(key))) {
       const googleClicks = new URLSearchParams();
-      for (const key of ['gclid','gbraid','wbraid','_dbg']) for (const value of params.getAll(key)) {
+      for (const key of ['gclid','gbraid','wbraid','_dbg','gtm_debug']) for (const value of params.getAll(key)) {
         if (/^[a-zA-Z0-9._~-]{1,512}$/.test(value)) googleClicks.append(key, value);
       }
       const search = googleClicks.toString();
@@ -31,7 +31,7 @@
   function loadGoogle() {
     const safeHash = !location.hash || (location.pathname === '/shop' && ['#bundles','#hair','#body','#frankincense'].includes(location.hash));
     const params = new URLSearchParams(location.search);
-    const safeQuery = [...params.entries()].every(([key,value]) => ['gclid','gbraid','wbraid','_dbg'].includes(key) && /^[a-zA-Z0-9._~-]{1,512}$/.test(value));
+    const safeQuery = [...params.entries()].every(([key,value]) => ['gclid','gbraid','wbraid','_dbg','gtm_debug'].includes(key) && /^[a-zA-Z0-9._~-]{1,512}$/.test(value));
     if (googleInitialized || !hasConsent() || !safeHash || !safeQuery || /(^|\/)checkout(?:\.html|\/|$)/.test(location.pathname)) return;
     googleInitialized = true;
     window.dataLayer = window.dataLayer || [];
