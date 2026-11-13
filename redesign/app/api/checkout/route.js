@@ -4,8 +4,11 @@ import {quoteCart} from '../../../lib/quote.mjs';
 import {createOmpayClient} from '../../../lib/ompay.mjs';
 export const runtime='nodejs';
 export async function POST(request){
+  if(process.env.PAYMENTS_ENABLED!=='true'||!process.env.OMPAY_API_KEY||!process.env.OMPAY_API_SECRET||!process.env.DATABASE_URL||!['sandbox','production'].includes(process.env.OMPAY_ENV)) return Response.json({error:'الدفع الإلكتروني غير متاح حالياً. تواصلي معنا عبر واتساب.'},{status:503});
   const base=process.env.NEXT_PUBLIC_SITE_URL;
-  if(!base || request.headers.get('origin')!==new URL(base).origin) return Response.json({error:'تعذر بدء الطلب.'},{status:403});
+  let origin;
+  try{origin=new URL(base).origin}catch{return Response.json({error:'الدفع الإلكتروني غير مهيأ لهذا الموقع حالياً. تواصلي معنا عبر واتساب.'},{status:503})}
+  if(request.headers.get('origin')!==origin) return Response.json({error:'الدفع الإلكتروني غير مهيأ لهذا الرابط حالياً. تواصلي معنا عبر واتساب.'},{status:403});
   let input,quote;
   try{
     input=await request.json();
@@ -13,7 +16,6 @@ export async function POST(request){
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) throw Error();
     quote=quoteCart(input.cart,input.country);
   }catch{return Response.json({error:'تحققي من بيانات الطلب.'},{status:400})}
-  if(process.env.PAYMENTS_ENABLED!=='true'||!process.env.OMPAY_API_KEY||!process.env.OMPAY_API_SECRET||!process.env.DATABASE_URL||!['sandbox','production'].includes(process.env.OMPAY_ENV)) return Response.json({error:'الدفع الإلكتروني غير متاح حالياً. تواصلي معنا عبر واتساب.'},{status:503});
   const id=randomUUID();
   try{
     await database().query('INSERT INTO orders (id,customer_name,customer_phone,customer_email,shipping_address,country,items,subtotal_baisa,shipping_baisa,total_baisa) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[id,input.name.trim(),input.phone.trim(),input.email.trim(),input.address.trim(),input.country,JSON.stringify(quote.items),quote.subtotalBaisa,quote.shippingBaisa,quote.totalBaisa]);
