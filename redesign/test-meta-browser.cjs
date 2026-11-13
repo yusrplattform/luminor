@@ -57,6 +57,14 @@ test('Google click IDs survive while other campaign details are removed',()=>{
   assert.equal(e.scripts.filter(src=>src.includes('GTM-PRDPLZK8')).length,1);
   assert.equal(e.scripts.filter(src=>src.includes('fbevents')).length,0);
 });
+test('Tag Assistant debug parameter loads Google only after consent',()=>{
+  const e=setup(null,'/shop','?_dbg=1');
+  assert.equal(e.scripts.length,0);
+  e.banner.children[1].click();
+  assert.equal(e.location.search,'?_dbg=1');
+  assert.equal(e.scripts.filter(src=>src.includes('GTM-PRDPLZK8')).length,1);
+  assert.equal(e.scripts.filter(src=>src.includes('fbevents')).length,0);
+});
 test('a local fake endpoint receives consented page and cart events without contacting Meta',async()=>{
   const http=require('node:http');
   const received=[];
