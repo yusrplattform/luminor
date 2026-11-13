@@ -13,7 +13,7 @@ export default function AddToCart({ id, image, name, detail = false }) {
       cart[id] = (Number(cart[id]) || 0) + 1;
       localStorage.setItem('luminor-cart', JSON.stringify(cart));
       window.dispatchEvent(new Event('luminor-cart-change'));
-      setMessage('تمت الإضافة إلى السلة ✓');
+      setMessage('تمت الإضافة إلى السلة');
     } catch {
       setMessage('تعذرت الإضافة، يرجى المحاولة مجددًا');
       return;
@@ -40,5 +40,5 @@ export default function AddToCart({ id, image, name, detail = false }) {
     animation.oncancel = () => flying.remove();
   }
 
-  return <><button ref={button} type="button" className={detail ? 'btn full' : 'buy-button'} onClick={add} aria-label={`اشترِ الآن: ${name}`}>اشترِ الآن</button><span className="cart-feedback" role="status">{message}</span></>;
+  return <><button ref={button} type="button" className={detail ? 'btn full' : 'buy-button'} onClick={add} aria-label={`أضيفي إلى السلة: ${name}`}>أضيفي إلى السلة</button><span className="cart-feedback" role="status">{message}{message==='تمت الإضافة إلى السلة'&&<> · <a href="/cart">عرض السلة</a></>}</span></>;
 }
