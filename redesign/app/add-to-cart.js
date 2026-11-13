@@ -13,6 +13,7 @@ export default function AddToCart({ id, image, name, detail = false }) {
       cart[id] = (Number(cart[id]) || 0) + 1;
       localStorage.setItem('luminor-cart', JSON.stringify(cart));
       window.dispatchEvent(new Event('luminor-cart-change'));
+      window.LuminorMarketing?.track('AddToCart');
       setMessage('تمت الإضافة إلى السلة');
     } catch {
       setMessage('تعذرت الإضافة، يرجى المحاولة مجددًا');

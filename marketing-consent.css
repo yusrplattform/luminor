@@ -1,0 +1,7 @@
+
+.marketing-consent { position: fixed; z-index: 10000; bottom: 1rem; inset-inline: 1rem; max-width: 44rem; margin-inline: auto; padding: 1rem; background: #fafaf5; color: #263d2d; border: 1px solid #8e9f89; box-shadow: 0 3px 18px #0003; direction: rtl; }
+.marketing-consent[hidden] { display: none; }
+.marketing-consent p { margin: 0 0 .8rem; line-height: 1.7; }
+.marketing-consent button, [data-marketing-settings] button { font: inherit; cursor: pointer; padding: .55rem .9rem; margin: .25rem; border: 1px solid #263d2d; background: #263d2d; color: white; }
+.marketing-consent button + button, [data-marketing-settings] button + button { background: transparent; color: #263d2d; }
+.marketing-consent a { margin-inline: .5rem; color: #263d2d; text-decoration: underline; }

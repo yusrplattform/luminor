@@ -517,6 +517,7 @@
     :focus-visible { outline: 3px solid #466a46; outline-offset: 3px; }
     @media (max-width: 480px) { .categories { grid-template-columns: repeat(2, minmax(0, 1fr)); } .category-button { min-height: 44px; font-size: .85rem; } .products { gap: 10px; } .product-card { padding: 8px; } .order-inner { gap: 8px; } .review-link { min-width: 90px; font-size: .84rem; } .order-btn { font-size: .9rem; } }
   </style>
+  <link rel="stylesheet" href="marketing-consent.css">
 </head>
 <body>
   <main class="page">
@@ -1064,7 +1065,8 @@
         <p>عند إرسال طلب عبر واتساب، تُرسل المنتجات المختارة إلى خدمة العملاء. قد يطلب فريق المتجر الاسم ورقم الهاتف وعنوان التوصيل وتفاصيل الطلب لإتمام البيع والشحن وخدمة ما بعد البيع.</p>
         <p>تُستخدم بيانات الطلب للتواصل وتنفيذ الطلبات ومعالجة الاستفسارات والإرجاع والالتزامات النظامية. يقتصر الإفصاح على ما يلزم لمقدمي خدمات التوصيل والدفع عند استخدامها، أو للجهات المختصة عند وجود التزام قانوني.</p>
         <p><strong>الإعلانات:</strong> نستخدم بيانات التواصل لإرسال العروض فقط بعد موافقة تسويقية اختيارية منفصلة وموثقة. لا يشترط قبول الإعلانات للشراء. يمكن سحب الموافقة مجانًا في أي وقت بإرسال «إلغاء الاشتراك» عبر واتساب أو البريد، ونتوقف عن الرسائل التسويقية عند استلام الطلب.</p>
-        <p><strong>التتبع وملفات الارتباط:</strong> وسوم Google Tag Manager والتتبع الإعلاني معطلة حاليًا على الموقع. قبل تفعيل أي أدوات تتبع، سنوضح الجهات والأغراض ومدد ملفات الارتباط ونوفر اختيار الموافقة أو الرفض وسحب الموافقة.</p>
+        <p><strong>التتبع التسويقي:</strong> بعد موافقتك فقط نستخدم Meta Pixel لقياس زيارة المتجر والتفاعل مع المنتجات وبدء الطلب وتحسين الإعلانات. قد تتلقى Meta معلومات تقنية مثل عنوان IP وبيانات المتصفح وملفات تعريف الارتباط وفق <a href="https://www.facebook.com/privacy/policy/" target="_blank" rel="noopener noreferrer">سياسة خصوصية Meta</a>. لا نرسل اسمك أو هاتفك أو عنوانك أو رسالة واتساب ضمن أحداث المتجر. يمكنك رفض التتبع أو سحب موافقتك هنا؛ لا يؤثر ذلك في الطلب أو في اختيار رسائل واتساب التسويقية.</p>
+        <div data-marketing-settings></div>
         <p>الاستضافة مقدمة عبر Vercel، وقد تتضمن معالجة بيانات اتصال تقنية مثل عنوان IP وسجلات الأمان. الانتقال إلى واتساب أو إنستغرام يخضع أيضًا لسياسات Meta، وقد يتضمن معالجة البيانات خارج بلد العميل. لا ترسل أرقام البطاقات أو رمز الأمان أو كلمات المرور عبر المحادثات؛ لا يوفر هذا الموقع حاليًا نموذجًا لإدخال بيانات البطاقة.</p>
         <p>الجهة المسؤولة عن بياناتك هي yusr platform LLC. لطلب الوصول إلى بياناتك أو تصحيحها أو حذفها أو سحب الموافقة أو تقديم شكوى، تواصل عبر <a href="mailto:fuad@yusr.om">fuad@yusr.om</a> أو الرقم المنشور. نحتفظ ببيانات الطلب بالقدر اللازم لتنفيذه وخدمة ما بعد البيع والالتزامات النظامية، ثم نحذفها أو نخفي هويتها. تُستخدم بيانات التسويق حتى سحب الموافقة، مع الاحتفاظ بالحد اللازم لتوثيق الموافقة واحترام إلغاء الاشتراك. نحصر الوصول إلى البيانات في الأشخاص المخولين ونتخذ تدابير لحمايتها.</p>
       </details>
@@ -1084,6 +1086,7 @@
     </div>
   </div>
 
+  <script src="marketing-consent.js"></script>
   <script src="product-shipping.js"></script>
   <script src="shipping.js"></script>
   <script>
@@ -1139,6 +1142,7 @@
         return;
       }
       updateSelection();
+      window.LuminorMarketing.track('InitiateCheckout');
     });
 
     function showCategory(category) {
@@ -1165,6 +1169,7 @@
       checkbox.addEventListener("change", () => {
         updateCardState(checkbox);
         updateSelection();
+        if (checkbox.checked) window.LuminorMarketing.track('AddToCart');
       });
     });
 
@@ -1179,6 +1184,7 @@
           checkbox.checked = !checkbox.checked;
           updateCardState(checkbox);
           updateSelection();
+          if (checkbox.checked) window.LuminorMarketing.track('AddToCart');
         }
       });
     });
