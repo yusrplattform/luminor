@@ -5,8 +5,8 @@ export function createOmpayClient({key, secret, environment = 'sandbox', fetchIm
   const origin = endpoints[environment];
   async function request(path, body) {
     const response = await fetchImpl(origin + path, {method: 'POST', headers: {'Content-Type': 'application/json', 'OMPAY-API-Key': key, 'OMPAY-API-Secret': secret}, body: JSON.stringify(body), cache: 'no-store', signal: AbortSignal.timeout(15000)});
-    let result; try { result = await response.json(); } catch { throw new Error('Invalid OMPAY response'); }
-    if (!response.ok || result?.success !== true || !result.data) throw new Error('OMPAY request failed');
+    let result; try { result = await response.json(); } catch { const error=new Error('Invalid OMPAY response'); error.code='GATEWAY_JSON'; throw error; }
+    if (!response.ok || result?.success !== true || !result.data) { const error=new Error('OMPAY request failed'); error.code=`HTTP_${response.status}`; throw error; }
     return result.data;
   }
   return {
@@ -14,7 +14,8 @@ export function createOmpayClient({key, secret, environment = 'sandbox', fetchIm
       if (!Number.isSafeInteger(amountBaisa) || amountBaisa <= 0 || typeof reference !== 'string' || !/^[A-Za-z0-9_-]{1,80}$/.test(reference)) throw new Error('Invalid order');
       const url = new URL(returnUrl); if (url.protocol !== 'https:') throw new Error('Invalid return URL');
       const data = await request('/api/v1/transactions/bank-hosted', {amount: amountBaisa / 1000, currency: 'OMR', return_url: url.toString(), reference_number: reference});
-      const redirect = new URL(data.redirect_url); if (redirect.protocol !== 'https:' || redirect.origin !== origin || typeof data.transaction_id !== 'string' || data.status !== 'PROCESSING') throw new Error('Invalid checkout response');
+      let redirect; try { redirect = new URL(data.redirect_url); } catch { const error=new Error('Invalid checkout response'); error.code='GATEWAY_URL'; throw error; }
+      if (redirect.protocol !== 'https:' || redirect.origin !== origin || typeof data.transaction_id !== 'string' || data.status !== 'PROCESSING') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_RESPONSE'; throw error; }
       return {transactionId: data.transaction_id, redirectUrl: redirect.toString()};
     },
     async inquire(transactionId, reference) {
