@@ -12,14 +12,13 @@ export async function POST(request){
   let input,quote;
   try{
     input=await request.json();
-    for(const key of ['name','email','phone','address']) if(typeof input[key]!=='string'||input[key].trim().length<3||input[key].length>250) throw Error();
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email)) throw Error();
+    for(const key of ['name','phone','address']) if(typeof input[key]!=='string'||input[key].trim().length<3||input[key].length>250) throw Error();
     quote=quoteCart(input.cart,input.country);
   }catch{return Response.json({error:'تحققي من بيانات الطلب.'},{status:400})}
   const id=randomUUID();
   let stage='database_insert';
   try{
-    await database().query('INSERT INTO orders (id,customer_name,customer_phone,customer_email,shipping_address,country,items,subtotal_baisa,shipping_baisa,total_baisa) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[id,input.name.trim(),input.phone.trim(),input.email.trim(),input.address.trim(),input.country,JSON.stringify(quote.items),quote.subtotalBaisa,quote.shippingBaisa,quote.totalBaisa]);
+    await database().query('INSERT INTO orders (id,customer_name,customer_phone,customer_email,shipping_address,country,items,subtotal_baisa,shipping_baisa,total_baisa) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[id,input.name.trim(),input.phone.trim(),'',input.address.trim(),input.country,JSON.stringify(quote.items),quote.subtotalBaisa,quote.shippingBaisa,quote.totalBaisa]);
     stage='gateway_checkout';
     const client=createOmpayClient({key:process.env.OMPAY_API_KEY,secret:process.env.OMPAY_API_SECRET,environment:process.env.OMPAY_ENV});
     const result=await client.createCheckout({amountBaisa:quote.totalBaisa,reference:id,returnUrl:new URL('/checkout/return?order='+id,base).toString()});
