@@ -40,5 +40,5 @@ export default function AddToCart({ id, image, name, detail = false }) {
     animation.oncancel = () => flying.remove();
   }
 
-  return <><button ref={button} type="button" className={detail ? 'btn full' : 'buy-button'} onClick={add} aria-label={`اشترِ الآن: ${name}`}>اشترِ الآن <span aria-hidden="true">↗</span></button><span className="cart-feedback" role="status">{message}</span></>;
+  return <><button ref={button} type="button" className={detail ? 'btn full' : 'buy-button'} onClick={add} aria-label={`اشترِ الآن: ${name}`}>اشترِ الآن</button><span className="cart-feedback" role="status">{message}</span></>;
 }
