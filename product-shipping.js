@@ -1,5 +1,9 @@
 // يُحتسب الشحن مؤقتًا على أساس 500 جرام لكل قطعة، بحسب التصنيف.
-window.LUMINOR_SHIPPING = {
+const LUMINOR_SHIPPING = {
+  "بكج العناية LUMINOR (خلطة التكثيف والنمو، زيت، تونر، ماسك الترطيب العميق) - 25.000 ر.ع": {
+    "weightGrams": 2000,
+    "shippingClass": "oil"
+  },
   "خلطة النمو والتكثيف LUMINOR - 12.000 ر.ع": {
     "weightGrams": 500,
     "shippingClass": "regular"
@@ -77,3 +81,5 @@ window.LUMINOR_SHIPPING = {
     "shippingClass": "regular"
   }
 };
+if (typeof window !== 'undefined') window.LUMINOR_SHIPPING = LUMINOR_SHIPPING;
+if (typeof module !== 'undefined') module.exports = LUMINOR_SHIPPING;

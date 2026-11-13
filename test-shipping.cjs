@@ -1,13 +1,17 @@
 const assert = require('node:assert/strict');
 const { calculate } = require('./shipping.js');
 const a = 'منتج - 4.500 ر.ع / 44 ر.س', b = 'زيت - 5.000 ر.ع / 49 ر.س';
-const settings = { [a]: { shippingClass: 'regular' }, [b]: { shippingClass: 'oil' } };
+const bundle = 'بكج - 25.000 ر.ع';
+const settings = { [a]: { shippingClass: 'regular', weightGrams: 500 }, [b]: { shippingClass: 'oil', weightGrams: 500 }, [bundle]: { shippingClass: 'oil', weightGrams: 2000 } };
 const result = (items, country, config = settings) => calculate(items, country, config).lines.join('\n');
 assert.match(result([a], 'OM'), /تكلفة الشحن: 3\.500 ر\.ع/);
 assert.match(result([b], 'SA'), /تكلفة الشحن: 4\.500 ر\.ع/);
 assert.match(result([a, b], 'OM'), /تكلفة الشحن: 9\.000 ر\.ع/);
 assert.match(result([a, b], 'OM'), /الإجمالي شامل الشحن: 18\.500 ر\.ع/);
 assert.match(result([a, a, b], 'OM'), /تكلفة الشحن: 13\.500 ر\.ع/);
+assert.match(result([bundle], 'OM'), /تكلفة الشحن: 18\.000 ر\.ع/);
+assert.match(result([bundle], 'OM'), /الإجمالي شامل الشحن: 43\.000 ر\.ع/);
+assert.match(result([bundle, a], 'OM'), /تكلفة الشحن: 22\.500 ر\.ع/);
 assert.match(result([a, a], 'AE'), /تكلفة الشحن: 7\.000 ر\.ع/);
 assert.match(result([a], 'other'), /يُؤكدان عبر واتساب/);
 assert.match(result([a], 'OM', {}), /تكلفة الشحن غير متوفرة/);

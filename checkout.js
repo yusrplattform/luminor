@@ -2,7 +2,7 @@
   'use strict';
   const key = 'luminor-selected-products';
   let products = [];
-  try { const stored = JSON.parse(sessionStorage.getItem(key) || '[]'); if (Array.isArray(stored)) products = stored.filter(item => typeof item === 'string').map(item => item.replace(/ \/ \d+ ر\.س$/, '')); sessionStorage.setItem(key, JSON.stringify(products)); } catch (_) {}
+  try { const stored = JSON.parse(sessionStorage.getItem(key) || '[]'); if (Array.isArray(stored)) products = stored.filter(item => typeof item === 'string').map(item => item.replace(/ \/ \d+ ر\.س$/, '').replace('بكج العناية LUMINOR (خلطة التكثيف والنمو، زيت، تونر، كريم ترطيب) - 25.000 ر.ع', 'بكج العناية LUMINOR (خلطة التكثيف والنمو، زيت، تونر، ماسك الترطيب العميق) - 25.000 ر.ع')); sessionStorage.setItem(key, JSON.stringify(products)); } catch (_) {}
   const form = document.getElementById('checkoutForm');
   const country = document.getElementById('deliveryCountry');
   const fields = ['otherCountry', 'customerName', 'customerPhone', 'customerAddress'];

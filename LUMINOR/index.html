@@ -498,6 +498,10 @@
     .shipping-note { background: #536d4b; line-height: 1.7; }
     .product-card { border-radius: 16px; padding: 12px; }
     .product-image, .product-media { border-radius: 11px; }
+    .bundle-images { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; overflow: hidden; border-radius: 11px; background: #f7f6f1; }
+    .bundle-images img { width: 100%; height: 100%; min-width: 0; aspect-ratio: 1 / 1.5; object-fit: cover; }
+    .bundle-offer { display: inline-block; align-self: flex-start; margin: 8px 0 0; padding: 3px 10px; border-radius: 99px; background: #e9eee2; color: #34513a; font-size: .8rem; font-weight: bold; }
+    .old-price { color: #6f756a; text-decoration: line-through; }
     .product-name { color: #344b37; }
     .category-button, .order-btn { border-radius: 12px; }
     .checkout-summary { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: clamp(18px, 4vw, 32px); margin-bottom: 145px; box-shadow: var(--shadow); }
@@ -525,6 +529,7 @@
 
     <nav class="categories" aria-label="تصنيفات المنتجات">
       <button class="category-button is-active" type="button" data-category="all">كل المنتجات</button>
+      <button class="category-button" type="button" data-category="bundles">البكجات</button>
       <button class="category-button" type="button" data-category="body">منتجات العناية بالجسم</button>
       <button class="category-button" type="button" data-category="hair">منتجات العناية بالشعر</button>
       <button class="category-button" type="button" data-category="frankincense">اللبان</button>
@@ -534,6 +539,26 @@
 
     <section class="products" aria-label="منتجات LUMINOR">
       <!-- لتغيير صور المنتجات: ضعي الصور الجديدة داخل مجلد images ثم عدلي قيمة src لكل منتج. -->
+
+      <label class="product-card" data-category="bundles">
+        <span class="selected-badge" aria-hidden="true">✓</span>
+        <span class="bundle-images" aria-label="صور منتجات البكج">
+          <img src="images/growth-mix.jpeg" alt="خلطة النمو والتكثيف">
+          <img src="images/hair-oil.png" alt="زيت LUMINOR">
+          <img src="images/toner.jpeg" alt="تونر LUMINOR">
+          <img src="images/deep-mask.jpeg" alt="ماسك الترطيب العميق">
+        </span>
+        <span class="product-body">
+          <span class="bundle-offer">عرض لفترة محدودة</span>
+          <h2 class="product-name">بكج العناية LUMINOR</h2>
+          <p class="product-desc">أربع لمسات للعناية بكِ: خلطة التكثيف والنمو التي تحتوي على الحنا، وزيت LUMINOR، وتونر، وماسك الترطيب العميق.</p>
+          <span class="price-row" aria-label="السعر السابق 30 ريال عُماني، سعر العرض 25 ريال عُماني">
+            <span class="old-price">30.000 ر.ع</span>
+            <span class="price-pill">25.000 ر.ع</span>
+          </span>
+          <span class="select-row"><span>اختيار البكج</span><input type="checkbox" name="product" value="بكج العناية LUMINOR (خلطة التكثيف والنمو، زيت، تونر، ماسك الترطيب العميق) - 25.000 ر.ع"></span>
+        </span>
+      </label>
 
       <label class="product-card" data-category="hair">
         <span class="selected-badge" aria-hidden="true">✓</span>
@@ -1085,6 +1110,7 @@
     const checkboxes = document.querySelectorAll('input[name="product"]');
     const checkoutBtn = document.getElementById("checkoutBtn");
     const selectionKey = "luminor-selected-products";
+    const normalizeProduct = item => item.replace(/ \/ \d+ ر\.س$/, "").replace("بكج العناية LUMINOR (خلطة التكثيف والنمو، زيت، تونر، كريم ترطيب) - 25.000 ر.ع", "بكج العناية LUMINOR (خلطة التكثيف والنمو، زيت، تونر، ماسك الترطيب العميق) - 25.000 ر.ع");
 
     function getSelectedProducts() {
       return Array.from(checkboxes).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value);
@@ -1092,7 +1118,7 @@
     function updateSelection() {
       const selected = getSelectedProducts();
       let previous = [];
-      try { const saved = JSON.parse(sessionStorage.getItem(selectionKey) || "[]"); if (Array.isArray(saved)) previous = saved.filter(item => typeof item === "string").map(item => item.replace(/ \/ \d+ ر\.س$/, "")); } catch (_) {}
+      try { const saved = JSON.parse(sessionStorage.getItem(selectionKey) || "[]"); if (Array.isArray(saved)) previous = saved.filter(item => typeof item === "string").map(normalizeProduct); } catch (_) {}
       const retained = previous.filter(product => selected.includes(product));
       selected.forEach(product => { if (!retained.includes(product)) retained.push(product); });
       document.getElementById("selectionCount").textContent = `(${retained.length})`;
@@ -1101,7 +1127,7 @@
     try {
       const saved = JSON.parse(sessionStorage.getItem(selectionKey) || "[]");
       if (Array.isArray(saved)) {
-        const normalized = saved.filter(item => typeof item === "string").map(item => item.replace(/ \/ \d+ ر\.س$/, ""));
+        const normalized = saved.filter(item => typeof item === "string").map(normalizeProduct);
         sessionStorage.setItem(selectionKey, JSON.stringify(normalized));
         checkboxes.forEach(checkbox => { checkbox.checked = normalized.includes(checkbox.value); updateCardState(checkbox); });
       }

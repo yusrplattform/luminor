@@ -1,0 +1,15 @@
+'use strict';
+const assert = require('node:assert/strict');
+const { quote } = require('./payment/quote.cjs');
+const catalogue = require('./product-shipping.js');
+const products = Object.keys(catalogue);
+const bundle = products.find(x => x.startsWith('بكج العناية'));
+const oil = products.find(x => x.startsWith('زيت الشعر'));
+const toner = products.find(x => x.startsWith('تونر'));
+assert.deepEqual(quote([bundle], 'OM'), { currency: 'OMR', subtotalBaisa: 25000, shippingBaisa: 18000, totalBaisa: 43000 });
+assert.equal(quote([oil, toner], 'SA').shippingBaisa, 9000);
+assert.equal(quote([toner, toner], 'OM').shippingBaisa, 7000);
+assert.throws(() => quote([toner.replace('2.000', '0.001')], 'OM'), /unknown_product/);
+assert.throws(() => quote([toner], 'other'), /unsupported_country/);
+assert.throws(() => quote([], 'OM'), /invalid_items/);
+console.log('Payment quote checks passed');
