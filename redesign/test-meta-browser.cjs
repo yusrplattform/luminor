@@ -26,6 +26,15 @@ test('previous Meta-only consent does not authorize Google',()=>{
   const e=setup();e.localStorage.setItem('luminor-marketing-consent-v1','accepted');
   e.window.LuminorMarketing.page();assert.equal(e.scripts.length,0);
 });
+test('Google Tag Manager receives exactly one initialization event after consent',()=>{
+  const e=setup();
+  assert.equal(e.window.dataLayer,undefined);
+  e.banner.children[1].click();
+  e.window.LuminorMarketing.page();
+  const starts=e.window.dataLayer.filter(entry=>entry.event==='gtm.js');
+  assert.equal(starts.length,1);
+  assert.equal(typeof starts[0]['gtm.start'],'number');
+});
 test('routes are counted once per navigation and events carry only approved fields',()=>{
   const e=setup('accepted','/products/1');
   e.window.LuminorMarketing.page();assert.deepEqual(calls(e).map(c=>c[2]),['PageView','ViewContent']);

@@ -39,6 +39,7 @@
     window.gtag('consent', 'default', {ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'denied'});
     window.gtag('consent', 'update', {ad_storage:'granted'});
     window.gtag('js', new Date());
+    window.dataLayer.push({'gtm.start': Date.now(), event: 'gtm.js'});
     const tag = document.createElement('script'); tag.async = true;
     tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + GOOGLE_TAG;
     document.head.appendChild(tag);
