@@ -92,9 +92,9 @@
     else if (value !== 'accepted' && (initialized || googleInitialized)) location.reload();
   }
   function button(text, fn) { const b = document.createElement('button'); b.type = 'button'; b.textContent = text; b.addEventListener('click', fn); return b; }
-  const banner = document.createElement('aside'); banner.className = 'marketing-consent'; banner.setAttribute('aria-label', 'اختيار التتبع التسويقي'); banner.hidden = choice === 'accepted' || choice === 'rejected';
-  const text = document.createElement('p'); text.textContent = 'نستخدم Meta Pixel ووسم Google بموافقتك فقط لقياس التفاعل مع المتجر وتحسين الإعلانات. يمكنك الرفض أو تغيير اختيارك لاحقاً من الخصوصية. لا يؤثر اختيارك على الطلب.';
-  banner.append(text, button('قبول التتبع التسويقي', () => choose('accepted')), button('رفض التتبع التسويقي', () => choose('rejected')));
+  const banner = document.createElement('aside'); banner.className = 'marketing-consent'; banner.setAttribute('aria-label', 'اختيارات ملفات تعريف الارتباط'); banner.hidden = choice === 'accepted' || choice === 'rejected';
+  const text = document.createElement('p'); text.textContent = 'نستخدم ملفات تعريف الارتباط التسويقية لقياس تفاعلك مع المتجر وتحسين إعلاناتنا. يمكنك تغيير اختيارك في أي وقت من صفحة الخصوصية.';
+  banner.append(text, button('قبول الكوكيز التسويقية', () => choose('accepted')), button('رفض الكوكيز التسويقية', () => choose('rejected')));
   const policy = document.createElement('a'); policy.href = location.pathname.endsWith('.html') || document.querySelector('#privacy-policy') ? 'index.html#privacy-policy' : '/privacy'; policy.textContent = 'الخصوصية'; banner.appendChild(policy);
   policy.addEventListener('click', event => {
     if (!document.querySelector('#privacy-policy')) return;
