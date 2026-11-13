@@ -15,7 +15,10 @@ export function createOmpayClient({key, secret, environment = 'sandbox', fetchIm
       const url = new URL(returnUrl); if (url.protocol !== 'https:') throw new Error('Invalid return URL');
       const data = await request('/api/v1/transactions/bank-hosted', {amount: amountBaisa / 1000, currency: 'OMR', return_url: url.toString(), reference_number: reference});
       let redirect; try { redirect = new URL(data.redirect_url); } catch { const error=new Error('Invalid checkout response'); error.code='GATEWAY_URL'; throw error; }
-      if (redirect.protocol !== 'https:' || redirect.origin !== origin || typeof data.transaction_id !== 'string' || data.status !== 'PROCESSING') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_RESPONSE'; throw error; }
+      if (redirect.protocol !== 'https:') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_SCHEME'; throw error; }
+      if (redirect.origin !== origin) { const error=new Error('Invalid checkout response'); error.code='GATEWAY_ORIGIN'; throw error; }
+      if (typeof data.transaction_id !== 'string') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_ID'; throw error; }
+      if (data.status !== 'PROCESSING') { const error=new Error('Invalid checkout response'); error.code='GATEWAY_STATUS'; throw error; }
       return {transactionId: data.transaction_id, redirectUrl: redirect.toString()};
     },
     async inquire(transactionId, reference) {
