@@ -1,2 +1,3 @@
-﻿import products from '../products.json';
-export default function sitemap(){const base=process.env.NEXT_PUBLIC_SITE_URL || 'https://luminor-ten.vercel.app';const paths=['','/shop','/about','/blog','/blog/hair-ritual','/blog/self-care','/shipping',...products.map(p=>'/products/'+p.id)];return paths.map(path=>({url:base.replace(/\/$/,'')+path}));}
+import products from '../products.json';
+import {posts} from './blog/posts';
+export default function sitemap(){const base=(process.env.NEXT_PUBLIC_SITE_URL || 'https://luminor-ten.vercel.app').replace(/\/$/,'');return ['','/shop','/about','/blog','/shipping',...posts.map(p=>'/blog/'+p.slug),...products.map(p=>'/products/'+p.id)].map(path=>({url:base+path}));}
