@@ -19,3 +19,4 @@
 .marketing-consent button, [data-marketing-settings] button { font: inherit; cursor: pointer; padding: .55rem .9rem; margin: .25rem; border: 1px solid #263d2d; background: #263d2d; color: white; }
 .marketing-consent button + button, [data-marketing-settings] button + button { background: transparent; color: #263d2d; }
 .marketing-consent a { margin-inline: .5rem; color: #263d2d; text-decoration: underline; }
+.low-stock { display: inline-block; margin: 4px 0 8px; padding: 4px 9px; border: 1px solid #c6aa85; color: #765a3b; background: #f6f0e5; font-size: 12px; line-height: 1.5; }
