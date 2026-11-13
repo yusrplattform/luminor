@@ -2,6 +2,7 @@ import {randomUUID} from 'node:crypto';
 import {database} from '../../../lib/db';
 import {quoteCart} from '../../../lib/quote.mjs';
 import {createOmpayClient} from '../../../lib/ompay.mjs';
+import {sendOrderNotification} from '../../../lib/notifications';
 export const runtime='nodejs';
 export async function POST(request){
   if(process.env.PAYMENTS_ENABLED!=='true'||!process.env.OMPAY_API_KEY||!process.env.OMPAY_API_SECRET||!process.env.DATABASE_URL||!['sandbox','production'].includes(process.env.OMPAY_ENV)) return Response.json({error:'الدفع الإلكتروني غير متاح حالياً. تواصلي معنا عبر واتساب.'},{status:503});
@@ -18,12 +19,13 @@ export async function POST(request){
   const id=randomUUID();
   let stage='database_insert';
   try{
-    await database().query('INSERT INTO orders (id,customer_name,customer_phone,customer_email,shipping_address,country,items,subtotal_baisa,shipping_baisa,total_baisa) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)',[id,input.name.trim(),input.phone.trim(),'',input.address.trim(),input.country,JSON.stringify(quote.items),quote.subtotalBaisa,quote.shippingBaisa,quote.totalBaisa]);
+    await database().query("WITH inserted AS (INSERT INTO orders (id,customer_name,customer_phone,customer_email,shipping_address,country,items,subtotal_baisa,shipping_baisa,total_baisa) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10) RETURNING id) INSERT INTO order_notifications (order_id,event) SELECT id,'created' FROM inserted",[id,input.name.trim(),input.phone.trim(),'',input.address.trim(),input.country,JSON.stringify(quote.items),quote.subtotalBaisa,quote.shippingBaisa,quote.totalBaisa]);
     stage='gateway_checkout';
     const client=createOmpayClient({key:process.env.OMPAY_API_KEY,secret:process.env.OMPAY_API_SECRET,environment:process.env.OMPAY_ENV});
     const result=await client.createCheckout({amountBaisa:quote.totalBaisa,reference:id,returnUrl:new URL('/checkout/return?order='+id,base).toString()});
     stage='database_update';
     await database().query("UPDATE orders SET transaction_id=$1,payment_status='processing',updated_at=now() WHERE id=$2",[result.transactionId,id]);
+    try{await sendOrderNotification(id,'created')}catch{console.error('Unable to send order notification')}
     return Response.json({redirectUrl:result.redirectUrl});
   }catch(error){
     console.error('Checkout failed', {stage, type: error?.name, code: typeof error?.code === 'string' && /^[A-Z0-9_]{1,16}$/.test(error.code) ? error.code : undefined});
