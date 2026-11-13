@@ -17,9 +17,10 @@ export function createOmpayClient({key, secret, environment = 'sandbox', fetchIm
       const redirect = new URL(data.redirect_url); if (redirect.protocol !== 'https:' || redirect.origin !== origin || typeof data.transaction_id !== 'string' || data.status !== 'PROCESSING') throw new Error('Invalid checkout response');
       return {transactionId: data.transaction_id, redirectUrl: redirect.toString()};
     },
-    async inquire(transactionId) {
-      if (typeof transactionId !== 'string' || !/^[a-zA-Z0-9-]{1,100}$/.test(transactionId)) throw new Error('Invalid transaction ID');
-      return request('/api/v1/transactions/inquiry', {transaction_id: transactionId});
+    async inquire(transactionId, reference) {
+      const value=transactionId || reference;
+      if (typeof value !== 'string' || !/^[a-zA-Z0-9-]{1,100}$/.test(value)) throw new Error('Invalid transaction reference');
+      return request('/api/v1/transactions/inquiry', transactionId ? {transaction_id: transactionId} : {reference_number: reference});
     }
   };
 }
