@@ -17,6 +17,6 @@ export function quoteCart(cart,country){
     return {id,name:p.name,quantity,priceBaisa:price};
   });
   if(count>50) throw new Error('too many items');
-  const shippingBaisa=Math.max(7000,weight*(hasOil?9:7));
+  const shippingBaisa=country==='OM'?2000:Math.max(7000,weight*(hasOil?9:7));
   return {items,subtotalBaisa,shippingBaisa,totalBaisa:subtotalBaisa+shippingBaisa};
 }
