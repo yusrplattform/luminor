@@ -5,7 +5,8 @@
     "name": "بكج العناية LUMINOR",
     "description": "أربع لمسات للعناية بكِ: خلطة التكثيف والنمو التي تحتوي على الحنا، وزيت LUMINOR، وتونر، وماسك الترطيب العميق.",
     "price": "25.000 ر.ع",
-    "image": "images/growth-mix.webp"
+    "image": "images/growth-mix.webp",
+    "bundleItems": ["2", "10", "3", "4"]
   },
   {
     "id": "2",
@@ -17,9 +18,9 @@
   },
   {
     "id": "3",
-    "category": "body",
+    "category": "hair",
     "name": "تونر بخاخ LUMINOR",
-    "description": "أضيفي لمسة لطيفة إلى روتين بشرتك مع تونر بخاخ يجعل لحظات العناية بنفسك أسهل وأجمل.",
+    "description": "أضيفي تونر LUMINOR البخاخ إلى روتين العناية بشعرك، واستفسري عن طريقة استخدامه المناسبة.",
     "price": "2.000 ر.ع",
     "image": "images/toner.webp"
   },
